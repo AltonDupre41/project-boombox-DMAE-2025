@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://v7xnq4blqk7y"]
 
-[ext_resource type="Shader" path="res://PaletteSwap.gdshader" id="1_wg668"]
+[ext_resource type="Shader" uid="uid://bcujkq8rcooc0" path="res://PaletteSwap.gdshader" id="1_wg668"]
 [ext_resource type="Texture2D" uid="uid://0327eil32nbd" path="res://assets/pal3.png" id="2_qimsv"]
 
 [resource]
 shader = ExtResource("1_wg668")
+shader_parameter/palette = ExtResource("2_qimsv")
 shader_parameter/skip_first_row = true
 shader_parameter/use_palette_alpha = false
 shader_parameter/fps = 0.0
-shader_parameter/palette = ExtResource("2_qimsv")

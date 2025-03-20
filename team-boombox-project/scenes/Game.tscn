@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bvvwhl0wkrmit"]
 
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_st3g3"]
-[ext_resource type="Script" path="res://src/game.gd" id="2_xgu2i"]
-[ext_resource type="Script" path="res://src/spectrum_background.gd" id="7_5ltad"]
+[ext_resource type="Script" uid="uid://tatlyt6ngjdr" path="res://src/game.gd" id="2_xgu2i"]
+[ext_resource type="Script" uid="uid://bmv27v2dfw2qs" path="res://src/spectrum_background.gd" id="7_5ltad"]
 [ext_resource type="PackedScene" uid="uid://bstnx6u5xnxv2" path="res://scenes/Rooms/StartRoom.tscn" id="8_nx52g"]
 [ext_resource type="PackedScene" uid="uid://byclep056nn7m" path="res://scenes/player.tscn" id="9_2xsb4"]
 [ext_resource type="AudioStream" uid="uid://bodvx63m2ji1y" path="res://assets/music/SynchAudio.tres" id="11_a8d3h"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://byclep056nn7m"]
 
-[ext_resource type="Script" path="res://src/player.gd" id="1_qe2h8"]
+[ext_resource type="Script" uid="uid://kec5ldcl24pl" path="res://src/player.gd" id="1_qe2h8"]
 [ext_resource type="Texture2D" uid="uid://cjpxyglmgq4r5" path="res://assets/Boombi/protoBoxLeft.png" id="2_ndb04"]
 [ext_resource type="Texture2D" uid="uid://ci55fvv3npp2s" path="res://assets/Boombi/protoBoxRight.png" id="3_ul6rf"]
 
