@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 			handleMovement(delta)
 	
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	match CONTROLMODE:
 		NONE: ## For pausing player control for cutscenes
 			pass
@@ -40,7 +40,7 @@ func _input(event: InputEvent) -> void:
 	anim()
 	
 
-func handleMovement(delta):
+func handleMovement(_delta):
 	var direction = movement_dir.x
 	var accel = ACCEL
 	var maxSpeed = MAXSPEED
@@ -66,7 +66,7 @@ func handleMovement(delta):
 		$JumpTimer.start()
 		jump()
 	
-	var was_on_floor = is_on_floor()	
+	was_on_floor = is_on_floor()	
 	
 	if !was_on_floor && is_on_floor():
 		if jumpBuffer:
@@ -89,7 +89,7 @@ func _on_jump_buffer_timer_timeout() -> void:
 
 func _on_jump_timer_timeout() -> void: ## Used for variable jump height
 	if !Input.is_action_pressed("Action1") && velocity.y < -JUMP/3:
-		velocity.y = -(JUMP/3)
+		velocity.y = -(JUMP/3.0)
 
 
 

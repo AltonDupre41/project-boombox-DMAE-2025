@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var layer1:ShaderMaterial = preload("res://assets/layer1.tres")
-@onready var layer2:ShaderMaterial = preload("res://assets/layer2.tres")
-@onready var layer3:ShaderMaterial = preload("res://assets/layer3.tres")
-@onready var lvlAudio:AudioStreamSynchronized = preload("res://assets/music/SynchAudio.tres")
+@onready var layer1:ShaderMaterial = load("res://assets/layer1.tres")
+@onready var layer2:ShaderMaterial = load("res://assets/layer2.tres")
+@onready var layer3:ShaderMaterial = load("res://assets/layer3.tres")
+@onready var lvlAudio:AudioStreamSynchronized = load("res://assets/music/SynchAudio.tres")
 	
 var currentPal = 0
 var curRoom:Node2D
@@ -15,7 +15,7 @@ func _ready() -> void:
 	lvlAudio.stream_count = trackNum
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func _loadRoom(RoomScene:PackedScene):

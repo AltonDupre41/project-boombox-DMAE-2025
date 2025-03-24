@@ -11,3 +11,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_tree_entered() -> void:
 	connect("loadRoom",Callable(get_parent().get_parent().get_parent().get_parent(),"_loadRoom"))
+	pass

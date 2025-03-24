@@ -18,3 +18,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_tree_entered() -> void:
 	connect("gearGet",Callable(get_parent().get_parent().get_parent(),"_gearGet"))
+	pass
