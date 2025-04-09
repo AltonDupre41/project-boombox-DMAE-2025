@@ -27,4 +27,4 @@ func changeState(path):
 func _ready():
 	if startState != null:
 		lvl_scene = changeState(startState)
-	JavaScriptBridge.eval("console.log(\"Hello world!\");",true)
+	
