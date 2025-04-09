@@ -1,220 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-		<title>Team Boombox Project</title>
-		<style>
-html, body, #canvas {
-	margin: 0;
-	padding: 0;
-	border: 0;
-}
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0"
+    />
+    <title>Bit By Beat</title>
+    <link rel="icon" type="image/png" href="index.icon.png" />
+    <link rel="apple-touch-icon" href="index.apple-touch-icon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #171c54;
+        color: white;
+        font-family: "Press Start 2P", cursive;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
 
-body {
-	color: white;
-	background-color: black;
-	overflow: hidden;
-	touch-action: none;
-}
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+      }
 
-#canvas {
-	display: block;
-}
+      .header-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+      }
 
-#canvas:focus {
-	outline: none;
-}
+      .home-btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-family: "Press Start 2P", cursive;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-#status, #status-splash, #status-progress {
-	position: absolute;
-	left: 0;
-	right: 0;
-}
+      .home-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
 
-#status, #status-splash {
-	top: 0;
-	bottom: 0;
-}
+      .game-title {
+        font-size: 3rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+      }
 
-#status {
-	background-color: #242424;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	visibility: hidden;
-}
+      .game-container {
+        width: 80%;
+        max-width: 1024px;
+        margin: 0 auto;
+        border: none; /* Removed white border */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
 
-#status-splash {
-	max-height: 100%;
-	max-width: 100%;
-	margin: auto;
-}
+      #canvas {
+        display: block;
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+      }
 
-#status-splash.show-image--false {
-	display: none;
-}
+      .corner-logo {
+        position: fixed;
+        top: 5px; /* Increased from 20px to 30px to move it down slightly */
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 1000;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+      }
 
-#status-splash.fullsize--true {
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
-}
+      .corner-logo:hover {
+        transform: scale(1.1);
+      }
 
-#status-splash.use-filter--false {
-	image-rendering: pixelated;
-}
+      .corner-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-#status-progress, #status-notice {
-	display: none;
-}
+      #status {
+        font-family: "Press Start 2P", cursive;
+        text-align: center;
+        margin: 10px 0;
+      }
 
-#status-progress {
-	bottom: 10%;
-	width: 50%;
-	margin: 0 auto;
-}
+      #status-progress {
+        width: 80%;
+        max-width: 600px;
+        margin: 10px auto;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        overflow: hidden;
+      }
 
-#status-notice {
-	background-color: #5b3943;
-	border-radius: 0.5rem;
-	border: 1px solid #9b3943;
-	color: #e0e0e0;
-	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-	line-height: 1.3;
-	margin: 0 2rem;
-	overflow: hidden;
-	padding: 1rem;
-	text-align: center;
-	z-index: 1;
-}
-		</style>
-		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
-<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+      #status-progress-inner {
+        height: 100%;
+        width: 0;
+        background-color: white;
+        transition: width 0.5s;
+      }
 
-	</head>
-	<body>
-		<canvas id="canvas">
-			Your browser does not support the canvas tag.
-		</canvas>
+      #status-indeterminate {
+        visibility: hidden;
+        position: relative;
+      }
 
-		<noscript>
-			Your browser does not support JavaScript.
-		</noscript>
+      #status-notice {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="landing.html" class="corner-logo">
+      <img src="media/leftCornerLogo.png" alt="Logo" />
+    </a>
+    <div class="header">
+      <div></div>
+      <!-- Empty div for spacing -->
+      <button class="home-btn" onclick="window.location.href='landing.html'">
+        HOME
+      </button>
+      <div class="header-line"></div>
+    </div>
 
-		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
-			<progress id="status-progress"></progress>
-			<div id="status-notice"></div>
-		</div>
+    <h1 class="game-title">Bit By Beat</h1>
 
-		<script src="index.js"></script>
-		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":10120784,"index.wasm":52126319},"focusCanvas":true,"gdextensionLibs":[]};
-const GODOT_THREADS_ENABLED = false;
-const engine = new Engine(GODOT_CONFIG);
+    <div class="game-container">
+      <canvas id="canvas">
+        HTML5 canvas appears to be unsupported in the current browser.<br />
+        Please try updating or use a different browser.
+      </canvas>
+    </div>
 
-(function () {
-	const statusOverlay = document.getElementById('status');
-	const statusProgress = document.getElementById('status-progress');
-	const statusNotice = document.getElementById('status-notice');
+    <div id="status">
+      <div
+        id="status-progress"
+        style="display: none"
+        oncontextmenu="event.preventDefault();"
+      >
+        <div id="status-progress-inner"></div>
+      </div>
+      <div
+        id="status-indeterminate"
+        style="display: none"
+        oncontextmenu="event.preventDefault();"
+      >
+        <div class="indeterminate-progress-box">
+          <div class="indeterminate-progress-div"></div>
+        </div>
+      </div>
+      <div id="status-notice" class="godot" style="display: none"></div>
+    </div>
 
-	let initializing = true;
-	let statusMode = '';
+    <script src="index.js"></script>
+    <script>
+      const GODOT_CONFIG = {
+        args: [],
+        canvasResizePolicy: 2,
+        executable: "index",
+        experimentalVK: false,
+        fileSizes: { "index.pck": 5533744, "index.wasm": 28972640 },
+        focusCanvas: true,
+        gdextensionLibs: [],
+      };
 
-	function setStatusMode(mode) {
-		if (statusMode === mode || !initializing) {
-			return;
-		}
-		if (mode === 'hidden') {
-			statusOverlay.remove();
-			initializing = false;
-			return;
-		}
-		statusOverlay.style.visibility = 'visible';
-		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
-		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
-		statusMode = mode;
-	}
+      var engine = new Engine(GODOT_CONFIG);
 
-	function setStatusNotice(text) {
-		while (statusNotice.lastChild) {
-			statusNotice.removeChild(statusNotice.lastChild);
-		}
-		const lines = text.split('\n');
-		lines.forEach((line) => {
-			statusNotice.appendChild(document.createTextNode(line));
-			statusNotice.appendChild(document.createElement('br'));
-		});
-	}
+      (function () {
+        const INDETERMINATE_STATUS_STEP_MS = 100;
+        var statusProgress = document.getElementById("status-progress");
+        var statusProgressInner = document.getElementById(
+          "status-progress-inner"
+        );
+        var statusIndeterminate = document.getElementById(
+          "status-indeterminate"
+        );
+        var statusNotice = document.getElementById("status-notice");
 
-	function displayFailureNotice(err) {
-		console.error(err);
-		if (err instanceof Error) {
-			setStatusNotice(err.message);
-		} else if (typeof err === 'string') {
-			setStatusNotice(err);
-		} else {
-			setStatusNotice('An unknown error occurred.');
-		}
-		setStatusMode('notice');
-		initializing = false;
-	}
+        var initializing = true;
+        var statusMode = "hidden";
 
-	const missing = Engine.getMissingFeatures({
-		threads: GODOT_THREADS_ENABLED,
-	});
+        var animationCallbacks = [];
+        function animate(time) {
+          animationCallbacks.forEach((callback) => callback(time));
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
 
-	if (missing.length !== 0) {
-		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
-			let serviceWorkerRegistrationPromise;
-			try {
-				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
-			} catch (err) {
-				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
-			}
-			// There's a chance that installing the service worker would fix the issue
-			Promise.race([
-				serviceWorkerRegistrationPromise.then((registration) => {
-					if (registration != null) {
-						return Promise.reject(new Error('Service worker already exists.'));
-					}
-					return registration;
-				}).then(() => engine.installServiceWorker()),
-				// For some reason, `getRegistration()` can stall
-				new Promise((resolve) => {
-					setTimeout(() => resolve(), 2000);
-				}),
-			]).then(() => {
-				// Reload if there was no error.
-				window.location.reload();
-			}).catch((err) => {
-				console.error('Error while registering service worker:', err);
-			});
-		} else {
-			// Display the message as usual
-			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
-			displayFailureNotice(missingMsg + missing.join('\n'));
-		}
-	} else {
-		setStatusMode('progress');
-		engine.startGame({
-			'onProgress': function (current, total) {
-				if (current > 0 && total > 0) {
-					statusProgress.value = current;
-					statusProgress.max = total;
-				} else {
-					statusProgress.removeAttribute('value');
-					statusProgress.removeAttribute('max');
-				}
-			},
-		}).then(() => {
-			setStatusMode('hidden');
-		}, displayFailureNotice);
-	}
-}());
-		</script>
-	</body>
+        function setStatusMode(mode) {
+          if (statusMode === mode || !initializing) return;
+          [statusProgress, statusIndeterminate, statusNotice].forEach(
+            (elem) => {
+              elem.style.display = "none";
+            }
+          );
+          animationCallbacks = animationCallbacks.filter(function (value) {
+            return value !== animateStatusIndeterminate;
+          });
+          switch (mode) {
+            case "progress":
+              statusProgress.style.display = "block";
+              break;
+            case "indeterminate":
+              statusIndeterminate.style.display = "block";
+              animationCallbacks.push(animateStatusIndeterminate);
+              break;
+            case "notice":
+              statusNotice.style.display = "block";
+              break;
+            case "hidden":
+              break;
+            default:
+              throw new Error("Invalid status mode");
+          }
+          statusMode = mode;
+        }
+
+        function animateStatusIndeterminate(ms) {
+          var i = Math.floor((ms / INDETERMINATE_STATUS_STEP_MS) % 8);
+          if (statusIndeterminate.children[i].style.borderTopColor === "") {
+            Array.prototype.slice
+              .call(statusIndeterminate.children)
+              .forEach((child) => {
+                child.style.borderTopColor = "";
+              });
+            statusIndeterminate.children[i].style.borderTopColor = "#dfdfdf";
+          }
+        }
+
+        function setStatusNotice(text) {
+          while (statusNotice.lastChild) {
+            statusNotice.removeChild(statusNotice.lastChild);
+          }
+          var lines = text.split("\n");
+          lines.forEach((line) => {
+            statusNotice.appendChild(document.createTextNode(line));
+            statusNotice.appendChild(document.createElement("br"));
+          });
+        }
+
+        function displayFailureNotice(err) {
+          var msg = err.message || err;
+          console.error(msg);
+          setStatusNotice(msg);
+          setStatusMode("notice");
+          initializing = false;
+        }
+
+        if (!Engine.isWebGLAvailable()) {
+          displayFailureNotice("WebGL not available");
+        } else {
+          setStatusMode("indeterminate");
+          engine
+            .startGame({
+              onProgress: function (current, total) {
+                if (total > 0) {
+                  statusProgressInner.style.width =
+                    (current / total) * 100 + "%";
+                  setStatusMode("progress");
+                  if (current === total) {
+                    // wait for progress bar animation
+                    setTimeout(() => {
+                      setStatusMode("indeterminate");
+                    }, 500);
+                  }
+                } else {
+                  setStatusMode("indeterminate");
+                }
+              },
+            })
+            .then(() => {
+              setStatusMode("hidden");
+              initializing = false;
+
+              // Fix the game scaling after it loads
+              setTimeout(function () {
+                // Get the game container and canvas
+                const gameContainer = document.querySelector(".game-container");
+                const canvas = document.getElementById("canvas");
+
+                // Set the canvas to fit within the container
+                canvas.style.width = "100%";
+                canvas.style.height = "auto";
+
+                // Ensure the game is fully visible (not zoomed in)
+                const gameWidth = canvas.width;
+                const gameHeight = canvas.height;
+                const containerWidth = gameContainer.clientWidth;
+
+                // Calculate the proper height to maintain aspect ratio
+                const properHeight = (containerWidth / gameWidth) * gameHeight;
+                canvas.style.height = properHeight + "px";
+
+                // Make sure the container adjusts to the canvas height
+                gameContainer.style.height = "auto";
+
+                // Ensure the canvas is properly centered
+                canvas.style.margin = "0 auto";
+              }, 500);
+            }, displayFailureNotice);
+        }
+      })();
+    </script>
+  </body>
 </html>
-
