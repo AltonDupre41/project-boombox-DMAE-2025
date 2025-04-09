@@ -30,6 +30,7 @@ var trackNum = 4
 func _ready() -> void:
 	curRoom = $Room.get_child(0)
 	lvlAudio.stream_count = trackNum
+	JavaScriptBridge.eval("console.log(\"Hello world!\");",true)
 
 
 func _physics_process(_delta: float) -> void:
