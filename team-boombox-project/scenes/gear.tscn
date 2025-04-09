@@ -1,23 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtnlbfe2d0v7c"]
+[gd_scene load_steps=10 format=3 uid="uid://dtnlbfe2d0v7c"]
 
+[ext_resource type="Shader" uid="uid://bcujkq8rcooc0" path="res://PaletteSwap.gdshader" id="1_6xtmk"]
 [ext_resource type="Script" uid="uid://dug26vdy4qxxu" path="res://src/gear.gd" id="1_8xeby"]
-[ext_resource type="Texture2D" uid="uid://clarjpwder2y6" path="res://assets/gearGreen.png" id="2_xfufk"]
+[ext_resource type="Texture2D" uid="uid://co4k4tj7keh2t" path="res://assets/pal1.png" id="2_5g20w"]
+[ext_resource type="Texture2D" uid="uid://bgu7vsrvqld5o" path="res://assets/gear.png" id="2_7j0fb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ehae"]
+shader = ExtResource("1_6xtmk")
+shader_parameter/palette = ExtResource("2_5g20w")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsdq0"]
 size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l2pq"]
+atlas = ExtResource("2_7j0fb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xtmk"]
+atlas = ExtResource("2_7j0fb")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uvoqu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xfufk")
+"texture": SubResource("AtlasTexture_4l2pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xtmk")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [node name="Gear" type="Node2D"]
+material = SubResource("ShaderMaterial_1ehae")
 script = ExtResource("1_8xeby")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -28,7 +49,9 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_nsdq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_uvoqu")
+frame_progress = 0.342181
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

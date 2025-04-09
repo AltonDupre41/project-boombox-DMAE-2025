@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bstnx6u5xnxv2"]
+[gd_scene load_steps=10 format=4 uid="uid://bstnx6u5xnxv2"]
 
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_6pt86"]
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="1_wfmmb"]
@@ -8,13 +8,9 @@
 [ext_resource type="TileSet" uid="uid://c1c4cjx0d8gtb" path="res://assets/ColorTiles.tres" id="4_dpxdp"]
 [ext_resource type="PackedScene" uid="uid://uccrqqp5fi0o" path="res://scenes/Rooms/Room1-2.tscn" id="4_yy0fk"]
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="5_oqylf"]
-[ext_resource type="PackedScene" uid="uid://dtnlbfe2d0v7c" path="res://scenes/gear.tscn" id="6_pfql4"]
-[ext_resource type="AudioStream" uid="uid://dkp45y1y158yx" path="res://assets/music/boombox-bassline.wav" id="7_ajoac"]
-[ext_resource type="Texture2D" uid="uid://co4k4tj7keh2t" path="res://assets/pal1.png" id="8_txo8b"]
-[ext_resource type="AudioStream" uid="uid://lmhni6mnew6a" path="res://assets/music/boombox-chords1.wav" id="12_qf7d3"]
-[ext_resource type="Texture2D" uid="uid://hv8lq7qmduk7" path="res://assets/pal2.png" id="13_bh4mc"]
-[ext_resource type="AudioStream" uid="uid://bhpyau3ecw46s" path="res://assets/music/boombox-melody1.wav" id="14_e0n0r"]
-[ext_resource type="Texture2D" uid="uid://0327eil32nbd" path="res://assets/pal3.png" id="15_6ljc3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh734"]
+size = Vector2(610, 58)
 
 [node name="StartRoom" type="Node2D"]
 use_parent_material = true
@@ -58,31 +54,17 @@ tile_set = ExtResource("4_dpxdp")
 [node name="LoadZone" parent="Col" instance=ExtResource("3_jsr1u")]
 Room = ExtResource("4_yy0fk")
 
+[node name="DeathPlane" type="Area2D" parent="Col"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Col/DeathPlane"]
+position = Vector2(-81, 100)
+shape = SubResource("RectangleShape2D_lh734")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -111)
 zoom = Vector2(3, 3)
 
 [node name="NewPlayerPos" type="Marker2D" parent="."]
 position = Vector2(-185, -145)
-
-[node name="Gear" parent="." instance=ExtResource("6_pfql4")]
-position = Vector2(-61, -103)
-audio = ExtResource("7_ajoac")
-track = 1
-pal = ExtResource("8_txo8b")
-
-[node name="Gear2" parent="." instance=ExtResource("6_pfql4")]
-position = Vector2(16, -148)
-gearNum = 1
-audio = ExtResource("12_qf7d3")
-track = 2
-pal = ExtResource("13_bh4mc")
-palLayer = 2
-
-[node name="Gear3" parent="." instance=ExtResource("6_pfql4")]
-position = Vector2(81, -154)
-gearNum = 2
-audio = ExtResource("14_e0n0r")
-track = 3
-pal = ExtResource("15_6ljc3")
-palLayer = 3

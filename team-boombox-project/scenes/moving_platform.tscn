@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oubf54nt26q"]
+
+[ext_resource type="Script" uid="uid://bmllwfnrh4v1e" path="res://src/moving_platform.gd" id="1_ms375"]
+
+[node name="Moving_Platform" type="Node2D"]
+script = ExtResource("1_ms375")

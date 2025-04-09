@@ -94,9 +94,23 @@ func _on_jump_timer_timeout() -> void: ## Used for variable jump height
 
 
 func anim() -> void:
+	var movement_dir = round(Input.get_vector("Left","Right","Down","Up"))
 	match CONTROLMODE:
 		NONE:
 			pass
 		
 		PLATFORM:
-			pass
+			if movement_dir.x != 0: 
+				$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x) * movement_dir.x
+				$AnimatedSprite2D.play("MoveRight")
+			else: $AnimatedSprite2D.play("Right")
+			
+			if Input.is_action_pressed("Action1") && is_on_floor():
+				$AnimatedSprite2D.play("Jump")
+				if $AnimatedSprite2D.frame == 11:
+					$AnimatedSprite2D.frame = 12
+			elif $AnimatedSprite2D.animation == "Jump" && $AnimatedSprite2D.frame == 11:
+				$AnimatedSprite2D.frame = 11
+
+func _on_damage_body_entered(body: Node2D) -> void:
+	get_parent().get_parent()._restart()
