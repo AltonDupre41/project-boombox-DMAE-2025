@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://c0yabtdrfgni6"]
+[gd_scene load_steps=16 format=4 uid="uid://c0yabtdrfgni6"]
 
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="1_fsqwb"]
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_g043e"]
@@ -10,7 +10,9 @@
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="7_pit1l"]
 [ext_resource type="Shader" uid="uid://bcujkq8rcooc0" path="res://PaletteSwap.gdshader" id="9_h3lx1"]
 [ext_resource type="Texture2D" uid="uid://co4k4tj7keh2t" path="res://assets/pal1.png" id="10_drlp1"]
+[ext_resource type="AudioStream" uid="uid://dwl4ebiadg3aw" path="res://assets/music/boombox-bassline1.wav" id="11_drlp1"]
 [ext_resource type="Texture2D" uid="uid://uoyfhgvn34b3" path="res://assets/pal4.png" id="11_xsy21"]
+[ext_resource type="AudioStream" uid="uid://dr1yerm47s6kd" path="res://assets/music/boombox-bassline2.wav" id="13_xsy21"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5rhqi"]
 shader = ExtResource("9_h3lx1")
@@ -76,12 +78,15 @@ position = Vector2(-176, -145)
 material = SubResource("ShaderMaterial_5rhqi")
 position = Vector2(-72, -171)
 gearNum = 1
+audio = ExtResource("11_drlp1")
+track = 1
 pal = ExtResource("10_drlp1")
 
 [node name="Gear2" parent="." instance=ExtResource("4_g0y6c")]
 material = SubResource("ShaderMaterial_ggjx0")
 position = Vector2(73, -171)
 gearNum = 1
+audio = ExtResource("13_xsy21")
 track = 3
 pal = ExtResource("11_xsy21")
 
