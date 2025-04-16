@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dufq70adgojnn"]
+
+[ext_resource type="Texture2D" uid="uid://c47qdpk1g2aba" path="res://assets/ladder.png" id="1_xxwne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb1tl"]
+size = Vector2(11, 3.5)
+
+[node name="Ladder" type="StaticBody2D"]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
+position = Vector2(1, -44)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(1, -38)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -27.5)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -6.5)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 14.5)
+shape = SubResource("RectangleShape2D_xb1tl")
+one_way_collision = true
+
+[node name="Ladder" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = ExtResource("1_xxwne")
+
+[node name="Ladder2" type="Sprite2D" parent="Ladder"]
+position = Vector2(0, -16)
+texture = ExtResource("1_xxwne")
+
+[node name="Ladder3" type="Sprite2D" parent="Ladder/Ladder2"]
+position = Vector2(0, -16)
+texture = ExtResource("1_xxwne")
+
+[node name="Ladder3" type="Sprite2D" parent="Ladder/Ladder2/Ladder3"]
+position = Vector2(0, -16)
+texture = ExtResource("1_xxwne")

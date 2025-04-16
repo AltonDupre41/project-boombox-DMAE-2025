@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://ehp2hu5lfy06"]
+[gd_scene load_steps=11 format=4 uid="uid://ehp2hu5lfy06"]
 
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_66aik"]
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="2_f8uhx"]
+[ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="2_i4fx6"]
 [ext_resource type="TileSet" uid="uid://deqpy66mvaypp" path="res://assets/ColTiles.tres" id="3_i4fx6"]
 [ext_resource type="TileSet" uid="uid://c1c4cjx0d8gtb" path="res://assets/ColorTiles.tres" id="4_vdxp2"]
 [ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="5_gouad"]
@@ -12,8 +13,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtk2"]
 size = Vector2(610, 58)
 
-[node name="StartRoom" type="Node2D"]
+[node name="Room" type="Node2D"]
 material = ExtResource("1_66aik")
+script = ExtResource("2_i4fx6")
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -24,17 +26,15 @@ texture = ExtResource("2_f8uhx")
 
 [node name="Col" type="Node2D" parent="."]
 use_parent_material = true
-position = Vector2(96, -51)
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
-position = Vector2(0, 3)
-tile_map_data = PackedByteArray("AADt/wIAAQADAAEAAADt/wEAAQADAAEAAADt/wAAAQADAAEAAADt////AQADAAEAAADt//7/AQADAAEAAADt//3/AQADAAEAAADt//z/AQADAAEAAADt//v/AQADAAEAAADt//r/AQADAAEAAADt//n/AQADAAEAAADt//j/AQADAAEAAADt//f/AQADAAEAAADt//b/AQADAAEAAADt//X/AQADAAEAAAA=")
+[node name="ColLayer" type="TileMapLayer" parent="Col"]
+tile_map_data = PackedByteArray("AAD0//L/AQADAAEAAAD0//P/AQADAAEAAAD0//T/AQADAAEAAAD0//X/AQADAAEAAAD0//b/AQADAAEAAAD0//f/AQADAAEAAAD0//j/AQADAAEAAAD0//n/AQADAAEAAAD0//r/AQADAAEAAAD0//v/AQADAAEAAAD0//z/AQADAAEAAAD0//7/AQADAAEAAAD0////AQADAAEAAAD1//7/AQADAAAAAAD2//7/AQAEAAAAAAD3//7/AQADAAAAAAD4//7/AQADAAAAAAD3////AQADAAAAAAD4////AQAEAAAAAAD1////AQADAAAAAAD2////AQAEAAAAAAD5//7/AQAEAAAAAAAAAP7/AQAEAAAAAAABAP//AQAEAAAAAAABAP7/AQADAAAAAAACAP7/AQAEAAAAAAACAP//AQADAAAAAAADAP//AQAEAAAAAAADAP7/AQADAAAAAAAEAP7/AQAEAAAAAAAEAP//AQADAAAAAAAFAP//AQADAAAAAAAFAP7/AQADAAAAAAAGAP7/AQAEAAAAAAAGAP//AQAEAAAAAAAHAP7/AQADAAAAAAAIAP7/AQAEAAAAAAAIAP//AQAEAAAAAAAJAP//AQAEAAAAAAAHAP//AQADAAAAAAAJAP7/AQADAAAAAAAKAP7/AQAEAAAAAAAKAP//AQADAAAAAAALAP//AQAEAAAAAAALAP7/AQADAAAAAAAMAP7/AQAEAAAAAAAMAP//AQADAAAAAAANAP//AQAEAAAAAAD0//3/AQADAAEAAAAEAP3/AQADAAEAAAAEAPz/AQADAAEAAAAEAPv/AQADAAEAAAAEAPr/AQADAAEAAAAFAPn/AQADAAEAAAAGAPn/AQADAAEAAAAHAPn/AQADAAEAAAAIAPn/AQADAAEAAAAJAPn/AQADAAEAAAAKAPn/AQADAAEAAAALAPn/AQADAAEAAAAMAPn/AQADAAEAAAANAPn/AQADAAEAAAANAP7/AQADAAEAAAANAP3/AQADAAEAAAANAPz/AQADAAEAAAANAPv/AQADAAEAAAANAPr/AQADAAEAAAAGAPr/AQAFAAMAAAAHAPr/AQAFAAMAAAAIAPr/AQAFAAMAAAAJAPr/AQAFAAMAAAAKAPr/AQAFAAMAAAALAPr/AQAFAAMAAAAMAPr/AQAFAAMAAAAMAPv/AQAFAAMAAAALAPv/AQAFAAMAAAAKAPv/AQAFAAMAAAAJAPv/AQAFAAMAAAAIAPv/AQAFAAMAAAAHAPv/AQAFAAMAAAAGAPv/AQAFAAMAAAAFAPv/AQAFAAMAAAAFAPz/AQAFAAMAAAAFAP3/AQAFAAMAAAAGAP3/AQAFAAMAAAAHAP3/AQAFAAMAAAAIAP3/AQAFAAMAAAAJAP3/AQAFAAMAAAAKAP3/AQAFAAMAAAALAP3/AQAFAAMAAAAMAP3/AQAFAAMAAAAMAPz/AQAFAAMAAAALAPz/AQAFAAMAAAAKAPz/AQAFAAMAAAAJAPz/AQAFAAMAAAAIAPz/AQAFAAMAAAAHAPz/AQAFAAMAAAAGAPz/AQAFAAMAAAD6/wAAAQAEAAMAAAD6////AQAEAAMAAAD9/wAAAQAEAAMAAAD9////AQAEAAMAAAD9//7/AQAEAAMAAAD//wAAAQAEAAMAAAD/////AQAEAAMAAAA=")
 tile_set = ExtResource("3_i4fx6")
 
 [node name="TileMapLayer1" type="TileMapLayer" parent="Col"]
-visible = false
 texture_filter = 1
 material = ExtResource("1_66aik")
+tile_map_data = PackedByteArray("AAD0//L/AAADAAEAAAD0//P/AAADAAEAAAD0//T/AAADAAEAAAD0//X/AAADAAEAAAD0//b/AAADAAEAAAD0//f/AAADAAEAAAD0//j/AAADAAEAAAD0//n/AAADAAEAAAD0//r/AAADAAEAAAD0//v/AAADAAEAAAD0//z/AAADAAEAAAD0//3/AAADAAEAAAD0//7/AAADAAEAAAD0////AAADAAEAAAD1//7/AAADAAAAAAD1////AAADAAAAAAD3//7/AAADAAAAAAD3////AAADAAAAAAD4//7/AAADAAAAAAABAP7/AAADAAAAAAACAP//AAADAAAAAAADAP7/AAADAAAAAAAEAPr/AAADAAEAAAAEAPv/AAADAAEAAAAEAPz/AAADAAEAAAAEAP3/AAADAAEAAAAEAP//AAADAAAAAAAFAPn/AAADAAEAAAAFAP7/AAADAAAAAAAFAP//AAADAAAAAAAGAPn/AAADAAEAAAAHAPn/AAADAAEAAAAHAP7/AAADAAAAAAAHAP//AAADAAAAAAAIAPn/AAADAAEAAAAJAPn/AAADAAEAAAAJAP7/AAADAAAAAAAKAPn/AAADAAEAAAAKAP//AAADAAAAAAALAPn/AAADAAEAAAALAP7/AAADAAAAAAAMAPn/AAADAAEAAAAMAP//AAADAAAAAAANAPn/AAADAAEAAAANAPr/AAADAAEAAAANAPv/AAADAAEAAAANAPz/AAADAAEAAAANAP3/AAADAAEAAAANAP7/AAADAAEAAAAFAPr/AAADAAEAAAA=")
 tile_set = ExtResource("4_vdxp2")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
@@ -50,14 +50,15 @@ material = ExtResource("6_0kphk")
 tile_set = ExtResource("4_vdxp2")
 
 [node name="LoadZone" parent="Col" instance=ExtResource("7_qaqpg")]
+position = Vector2(175, -150)
 Room = ExtResource("8_7821u")
 
 [node name="DeathPlane" type="Area2D" parent="Col"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Col/DeathPlane"]
-position = Vector2(-81, 100)
+position = Vector2(4, 44)
 shape = SubResource("RectangleShape2D_uqtk2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -65,4 +66,4 @@ position = Vector2(0, -111)
 zoom = Vector2(3, 3)
 
 [node name="NewPlayerPos" type="Marker2D" parent="."]
-position = Vector2(-176, -145)
+position = Vector2(-160, -51)
