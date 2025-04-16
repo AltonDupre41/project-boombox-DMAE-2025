@@ -13,6 +13,11 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+    <!-- NES.css -->
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="index.css" />
   </head>
@@ -41,13 +46,15 @@
       <button id="fullscreen-btn" class="fullscreen-btn">FULLSCREEN</button>
     </div>
 
-    <!-- Chat box component -->
-    <div class="chat-box">
-      <div class="chat-message">Welcome to the chat!</div>
-      <div class="chat-separator"></div>
-      <div class="chat-message">Feel free to scroll through messages.</div>
-      <div class="chat-separator"></div>
-      <div class="chat-message">New messages will appear here.</div>
+    <!-- Chat box component - now empty by default -->
+    <!-- Chat box component with NES.css styling -->
+    <div class="chat-container">
+      <div class="nes-container with-title is-dark chat-box">
+        <p class="title">DIALOGUE</p>
+        <div class="chat-messages">
+          <!-- Dialogue messages will be added here dynamically -->
+        </div>
+      </div>
     </div>
 
     <div id="status">
@@ -71,6 +78,7 @@
     </div>
 
     <script src="index.js"></script>
+    <script src="dialogue.js"></script>
     <script>
       const GODOT_CONFIG = {
         args: [],
@@ -214,6 +222,9 @@
 
                 // Ensure the canvas is properly centered
                 canvas.style.margin = "0 auto";
+
+                // Display initial welcome message
+                triggerDialogue(0);
               }, 500);
             }, displayFailureNotice);
         }
@@ -257,6 +268,9 @@
           ? "FULLSCREEN"
           : "EXIT";
       });
+
+      // Make the triggerDialogue function available to the Godot game
+      window.triggerDialogue = triggerDialogue;
     </script>
   </body>
 </html>

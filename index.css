@@ -105,30 +105,60 @@ body {
   object-fit: cover;
 }
 
-/* Chat box styling - inverted proportions for a vertical rectangle */
-.chat-box {
-  width: 300px; /* Narrower width */
-  height: 600px; /* Taller height */
+/* Chat box styling with NES.css integration */
+.chat-container {
+  width: 80%;
+  max-width: 800px;
   margin: 20px auto;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  background-color: #171c54;
+}
+
+.chat-box {
+  margin-bottom: 20px;
   overflow-y: auto;
+  max-height: 150px;
 }
 
-.chat-message {
-  background-color: #262d77;
-  border-radius: 10px;
-  padding: 8px 12px;
-  margin: 5px 0;
+.chat-messages {
+  padding: 5px;
 }
 
-.chat-separator {
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.3);
-  margin: 5px 0;
-  border: none;
+.message {
+  margin-bottom: 15px;
+}
+
+/* Customize the NES.css balloon for our chat */
+.nes-balloon.from-left {
+  background-color: #212529;
+  border-color: #fff;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.nes-balloon.from-left p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Make sure the Press Start 2P font is used everywhere */
+.nes-container,
+.nes-balloon,
+.title {
+  font-family: "Press Start 2P", cursive;
+}
+
+/* Customize scrollbar for webkit browsers */
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: #8a8a8a;
+  border-radius: 4px;
 }
 
 /* Status component styling */
