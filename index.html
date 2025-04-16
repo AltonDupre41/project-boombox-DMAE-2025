@@ -13,154 +13,41 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #171c54;
-        color: white;
-        font-family: "Press Start 2P", cursive;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        position: relative;
-      }
-
-      .header-line {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: white;
-      }
-
-      .home-btn {
-        background-color: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-family: "Press Start 2P", cursive;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .home-btn:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-      }
-
-      .game-title {
-        font-size: 3rem;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-align: center;
-        text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
-      }
-
-      .game-container {
-        width: 80%;
-        max-width: 1024px;
-        margin: 0 auto;
-        border: none; /* Removed white border */
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        position: relative;
-      }
-
-      #canvas {
-        display: block;
-        width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-      }
-
-      .corner-logo {
-        position: fixed;
-        top: 5px; /* Increased from 20px to 30px to move it down slightly */
-        left: 20px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        overflow: hidden;
-        z-index: 1000;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s ease;
-      }
-
-      .corner-logo:hover {
-        transform: scale(1.1);
-      }
-
-      .corner-logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      #status {
-        font-family: "Press Start 2P", cursive;
-        text-align: center;
-        margin: 10px 0;
-      }
-
-      #status-progress {
-        width: 80%;
-        max-width: 600px;
-        margin: 10px auto;
-        height: 20px;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        overflow: hidden;
-      }
-
-      #status-progress-inner {
-        height: 100%;
-        width: 0;
-        background-color: white;
-        transition: width 0.5s;
-      }
-
-      #status-indeterminate {
-        visibility: hidden;
-        position: relative;
-      }
-
-      #status-notice {
-        margin: 10px 0;
-      }
-    </style>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <a href="landing.html" class="corner-logo">
       <img src="media/leftCornerLogo.png" alt="Logo" />
     </a>
+
     <div class="header">
       <div></div>
-      <!-- Empty div for spacing -->
+      <!-- Title in the center of the header -->
+      <div class="header-title">Bit By Beat</div>
       <button class="home-btn" onclick="window.location.href='landing.html'">
         HOME
       </button>
       <div class="header-line"></div>
     </div>
 
-    <h1 class="game-title">Bit By Beat</h1>
+    <h1 class="game-title"></h1>
 
     <div class="game-container">
       <canvas id="canvas">
         HTML5 canvas appears to be unsupported in the current browser.<br />
         Please try updating or use a different browser.
       </canvas>
+      <button id="fullscreen-btn" class="fullscreen-btn">FULLSCREEN</button>
+    </div>
+
+    <!-- Chat box component -->
+    <div class="chat-box">
+      <div class="chat-message">Welcome to the chat!</div>
+      <div class="chat-separator"></div>
+      <div class="chat-message">Feel free to scroll through messages.</div>
+      <div class="chat-separator"></div>
+      <div class="chat-message">New messages will appear here.</div>
     </div>
 
     <div id="status">
@@ -306,7 +193,6 @@
 
               // Fix the game scaling after it loads
               setTimeout(function () {
-                // Get the game container and canvas
                 const gameContainer = document.querySelector(".game-container");
                 const canvas = document.getElementById("canvas");
 
@@ -332,6 +218,45 @@
             }, displayFailureNotice);
         }
       })();
+
+      // Fullscreen functionality
+      document
+        .getElementById("fullscreen-btn")
+        .addEventListener("click", function () {
+          const gameContainer = document.querySelector(".game-container");
+
+          if (!document.fullscreenElement) {
+            if (gameContainer.requestFullscreen) {
+              gameContainer.requestFullscreen();
+            } else if (gameContainer.mozRequestFullScreen) {
+              gameContainer.mozRequestFullScreen();
+            } else if (gameContainer.webkitRequestFullscreen) {
+              gameContainer.webkitRequestFullscreen();
+            } else if (gameContainer.msRequestFullscreen) {
+              gameContainer.msRequestFullscreen();
+            }
+            this.textContent = "EXIT";
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+              document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+              document.msExitFullscreen();
+            }
+            this.textContent = "FULLSCREEN";
+          }
+        });
+
+      // Update button text when exiting fullscreen via Escape key
+      document.addEventListener("fullscreenchange", function () {
+        const fullscreenBtn = document.getElementById("fullscreen-btn");
+        fullscreenBtn.textContent = !document.fullscreenElement
+          ? "FULLSCREEN"
+          : "EXIT";
+      });
     </script>
   </body>
 </html>
