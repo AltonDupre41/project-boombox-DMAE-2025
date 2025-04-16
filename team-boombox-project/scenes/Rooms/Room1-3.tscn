@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=4 uid="uid://c0yabtdrfgni6"]
+[gd_scene load_steps=18 format=4 uid="uid://c0yabtdrfgni6"]
 
+[ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="1_5rhqi"]
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="1_fsqwb"]
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_g043e"]
 [ext_resource type="TileSet" uid="uid://deqpy66mvaypp" path="res://assets/ColTiles.tres" id="3_3a1pd"]
@@ -8,6 +9,7 @@
 [ext_resource type="TileSet" uid="uid://c1c4cjx0d8gtb" path="res://assets/ColorTiles.tres" id="5_2ebbs"]
 [ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="6_kcjr2"]
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="7_pit1l"]
+[ext_resource type="PackedScene" uid="uid://ehp2hu5lfy06" path="res://scenes/Rooms/Room2-1.tscn" id="8_xsy21"]
 [ext_resource type="Shader" uid="uid://bcujkq8rcooc0" path="res://PaletteSwap.gdshader" id="9_h3lx1"]
 [ext_resource type="Texture2D" uid="uid://co4k4tj7keh2t" path="res://assets/pal1.png" id="10_drlp1"]
 [ext_resource type="AudioStream" uid="uid://dwl4ebiadg3aw" path="res://assets/music/boombox-bassline1.wav" id="11_drlp1"]
@@ -28,8 +30,9 @@ shader_parameter/skip_first_row = true
 shader_parameter/use_palette_alpha = false
 shader_parameter/fps = 0.0
 
-[node name="StartRoom" type="Node2D"]
+[node name="Room" type="Node2D"]
 use_parent_material = true
+script = ExtResource("1_5rhqi")
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -42,7 +45,7 @@ texture = ExtResource("1_fsqwb")
 use_parent_material = true
 position = Vector2(96, -51)
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
+[node name="ColLayer" type="TileMapLayer" parent="Col"]
 tile_map_data = PackedByteArray("AAADAP7/AQACAAEAAAAEAP7/AQABAAEAAAAEAP//AQABAAEAAAAFAP7/AQACAAEAAAAFAP//AQACAAEAAADu//7/AQABAAEAAADu////AQABAAEAAADu/wAAAQABAAEAAADu/wEAAQABAAEAAADu/wIAAQABAAEAAADv//7/AQACAAEAAADv////AQACAAEAAADv/wAAAQACAAEAAADv/wEAAQACAAEAAADv/wIAAQACAAEAAADw/wIAAQABAAEAAADx/wIAAQACAAEAAADy/wIAAQABAAEAAADz/wIAAQACAAEAAAD0/wIAAQABAAEAAAD1/wIAAQACAAEAAAD2/wIAAQABAAEAAAD3/wIAAQACAAEAAAD4/wIAAQABAAEAAAD5/wIAAQACAAEAAAD6/wIAAQABAAEAAAD7/wIAAQACAAEAAAD8/wIAAQABAAEAAAD9/wIAAQACAAEAAAD+/wIAAQABAAEAAAD//wIAAQACAAEAAAAAAAIAAQABAAEAAAABAAIAAQACAAEAAAACAAIAAQABAAEAAAADAAAAAQACAAEAAAADAAEAAQACAAEAAAADAAIAAQACAAEAAAAEAAAAAQABAAEAAAAEAAEAAQABAAEAAAAEAAIAAQABAAEAAAAFAAAAAQACAAEAAAAFAAEAAQACAAEAAAAFAAIAAQACAAEAAADv//3/AQACAAEAAADu//3/AQABAAEAAADu//z/AQABAAEAAADv//z/AQACAAEAAADv//v/AQACAAAAAADu//v/AQABAAAAAAADAP3/AQACAAEAAAADAPz/AQACAAEAAAADAPv/AQACAAAAAAAEAPv/AQABAAAAAAAFAPv/AQABAAAAAAAFAPz/AQACAAEAAAAEAPz/AQABAAEAAAAEAP3/AQABAAEAAAAFAP3/AQACAAEAAAAGAPv/AQACAAAAAAAGAPz/AQABAAEAAAAGAP3/AQABAAEAAAAGAP7/AQABAAEAAAAGAP//AQABAAEAAAAGAAAAAQABAAEAAAAGAAEAAQABAAEAAAAGAAIAAQABAAEAAADt/wIAAQACAAEAAADt/wEAAQACAAEAAADt/wAAAQACAAEAAADt////AQACAAEAAADt//7/AQACAAEAAADt//3/AQACAAEAAADt//z/AQACAAEAAADt//v/AQACAAEAAADt//r/AQACAAEAAADt//n/AQACAAEAAADt//j/AQACAAEAAADt//f/AQACAAEAAADt//b/AQACAAEAAADt//X/AQACAAEAAADw//v/AQABAAAAAADx//v/AQACAAAAAADy//v/AQABAAAAAADz//v/AQACAAAAAAD0//v/AQABAAAAAAD1//v/AQACAAAAAAD2//v/AQABAAAAAAD3//v/AQACAAAAAAD4//v/AQABAAAAAAD5//v/AQACAAAAAAD6//v/AQABAAAAAAD7//v/AQACAAAAAAD8//v/AQABAAAAAAD9//v/AQACAAAAAAD+//v/AQABAAAAAAD///v/AQACAAAAAAAAAPv/AQABAAAAAAABAPv/AQACAAAAAAACAPv/AQABAAAAAAD1//3/AQACAAEAAAD1//z/AQACAAEAAADz//z/AQACAAEAAADy//z/AQABAAEAAADx//z/AQACAAEAAADw/wAAAQABAAEAAADw/wEAAQABAAEAAADx/wEAAQACAAEAAADx/wAAAQACAAEAAADx////AQACAAEAAADx//7/AQACAAEAAADx//3/AQACAAEAAADy//3/AQABAAEAAADy//7/AQABAAEAAADy////AQABAAEAAADy/wAAAQABAAEAAADy/wEAAQABAAEAAADz/wEAAQACAAEAAADz/wAAAQACAAEAAADz////AQACAAEAAADz//7/AQACAAEAAADz//3/AQACAAEAAAD0/wAAAQABAAEAAAD0/wEAAQABAAEAAAD1/wEAAQACAAEAAAD1/wAAAQACAAEAAAD1////AQACAAEAAAD1//7/AQACAAEAAAD3//z/AQACAAEAAAD3//3/AQACAAEAAAD3//7/AQACAAEAAAD3////AQACAAEAAAD2/wAAAQABAAEAAAD2/wEAAQABAAEAAAD3/wEAAQACAAEAAAD3/wAAAQACAAEAAAD4/wAAAQABAAEAAAD4////AQABAAEAAAD4//7/AQABAAEAAAD4//3/AQABAAEAAAD4//z/AQABAAEAAAD5//z/AQACAAEAAAD5//3/AQACAAEAAAD5//7/AQACAAEAAAD5////AQACAAEAAAD5/wAAAQACAAEAAAD5/wEAAQACAAEAAAD4/wEAAQABAAEAAAD6/wEAAQABAAEAAAD6/wAAAQABAAEAAAD7//z/AQACAAEAAAD7//3/AQACAAEAAAD7//7/AQACAAEAAAD7////AQACAAEAAAD7/wAAAQACAAEAAAD7/wEAAQACAAEAAAD8/wEAAQABAAEAAAD8/wAAAQABAAEAAAD9//z/AQACAAEAAAD9//3/AQACAAEAAAD9//7/AQACAAEAAAD9////AQACAAEAAAD9/wAAAQACAAEAAAD9/wEAAQACAAEAAAD+/wEAAQABAAEAAAD+/wAAAQABAAEAAAD+////AQABAAEAAAD+//7/AQABAAEAAAD+//3/AQABAAEAAAD+//z/AQABAAEAAAD//wAAAQACAAEAAAD//wEAAQACAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAAAPz/AQABAAEAAAABAPz/AQACAAEAAAABAP3/AQACAAEAAAABAP7/AQACAAEAAAABAAAAAQACAAEAAAABAAEAAQACAAEAAAACAAEAAQABAAEAAAACAAAAAQABAAEAAAACAP7/AQABAAEAAAACAP3/AQABAAEAAAACAPz/AQABAAEAAAD2//z/AQABAAEAAAA=")
 tile_set = ExtResource("3_3a1pd")
 
@@ -66,13 +69,14 @@ material = ExtResource("7_pit1l")
 tile_set = ExtResource("5_2ebbs")
 
 [node name="LoadZone" parent="Col" instance=ExtResource("3_xls82")]
+Room = ExtResource("8_xsy21")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -111)
 zoom = Vector2(3, 3)
 
 [node name="NewPlayerPos" type="Marker2D" parent="."]
-position = Vector2(-176, -145)
+position = Vector2(-174, -154)
 
 [node name="Gear" parent="." instance=ExtResource("4_g0y6c")]
 material = SubResource("ShaderMaterial_5rhqi")
@@ -81,19 +85,21 @@ gearNum = 1
 audio = ExtResource("11_drlp1")
 track = 1
 pal = ExtResource("10_drlp1")
+power = 0
 
-[node name="Gear2" parent="." instance=ExtResource("4_g0y6c")]
+[node name="Gear 2" parent="." instance=ExtResource("4_g0y6c")]
 material = SubResource("ShaderMaterial_ggjx0")
 position = Vector2(73, -171)
 gearNum = 1
 audio = ExtResource("13_xsy21")
 track = 3
 pal = ExtResource("11_xsy21")
+power = 1
 
-[node name="Label" type="Label" parent="Gear2"]
+[node name="Label" type="Label" parent="."]
 texture_filter = 1
-offset_left = -160.0
-offset_top = -49.0
-offset_right = 20.0
-offset_bottom = -26.0
+offset_left = -87.0
+offset_top = -220.0
+offset_right = 93.0
+offset_bottom = -197.0
 text = "You Can Only Pick One!"

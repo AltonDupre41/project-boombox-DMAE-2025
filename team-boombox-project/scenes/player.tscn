@@ -295,9 +295,22 @@ scale = Vector2(0.648438, 0.648438)
 sprite_frames = SubResource("SpriteFrames_jm7th")
 animation = &"Right"
 
+[node name="Box" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(1.54217, 20.0482)
+target_position = Vector2(20, 0)
+collision_mask = 8
+
+[node name="Wall" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(1.54217, 20.0482)
+target_position = Vector2(-43.181, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_yq2fn")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
 
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -308,13 +321,23 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Damage" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_yq2fn")
 
+[node name="Ladder" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_yq2fn")
+debug_color = Color(0.966124, 2.21401e-06, 0.482475, 0.42)
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="jumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="area_entered" from="Damage" to="." method="_on_damage_area_entered"]

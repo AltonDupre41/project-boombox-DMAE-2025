@@ -8,6 +8,7 @@ signal gearGet(gear)
 @export var track:int = 0
 @export var pal:CompressedTexture2D
 @export var palLayer:int = 1
+@export var power = -1
 
 @export var mat:CompressedTexture2D
 
