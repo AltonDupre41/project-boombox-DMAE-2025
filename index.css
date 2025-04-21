@@ -193,24 +193,165 @@ body {
 #status-notice {
   margin: 10px 0;
 }
+/* Game wrapper to contain both game and dialogue */
+.game-wrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  align-items: flex-start; /* Align items to the top */
+}
+
+/* Game container styles */
+.game-container {
+  flex: 1;
+  position: relative;
+  margin-right: 20px;
+  /* Ensure the game container maintains its aspect ratio */
+  height: auto;
+}
+
+/* Canvas styling to maintain proper proportions */
+#canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Dialogue box styles - TALL VERTICAL RECTANGLE (SKYSCRAPER) */
+.chat-container {
+  width: 250px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.chat-box {
+  height: 600px; /* Taller fixed height for more pronounced skyscraper shape */
+  min-height: 600px; /* Ensure minimum height */
+  max-height: 600px; /* Ensure maximum height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 10px;
+  /* Add some styling to emphasize the vertical shape */
+  border-radius: 5px;
+}
+
+.chat-box .title {
+  text-align: center;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 1em;
+  letter-spacing: 1px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  font-size: 0.9em;
+  line-height: 1.4;
+  /* Ensure this takes up most of the vertical space */
+  min-height: 520px;
+}
+
+/* Message balloon styling */
+.message {
+  margin-bottom: 15px;
+  word-wrap: break-word;
+  background-color: rgba(60, 60, 60, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  position: relative;
+  /* Add subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Character name styling */
+.character-name {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #ffd866;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 3px;
+}
+
+/* Different character message styles */
+.character-guide {
+  border-left: 3px solid #58a6ff;
+}
+
+.character-tutor {
+  border-left: 3px solid #7ee787;
+}
+
+/* Scrollbar styling for the chat messages */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
 
 /* Fullscreen button styling */
 .fullscreen-btn {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background-color: #171c54;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
   z-index: 100;
+  background-color: #212529;
+  color: white;
+  border: 2px solid white;
+  padding: 5px 10px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7em;
+  cursor: pointer;
 }
 
 .fullscreen-btn:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #495057;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-wrapper {
+    flex-direction: column;
+    padding: 0 10px;
+  }
+
+  .game-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .chat-container {
+    width: 100%;
+  }
+
+  .chat-box {
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+  }
+
+  .chat-messages {
+    min-height: 220px;
+  }
 }

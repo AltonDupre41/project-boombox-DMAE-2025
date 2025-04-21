@@ -1,90 +1,73 @@
-// Dialogue system for Bit By Beat
-const dialogueMessages = [
-  "Welcome to Bit By Beat! Press the arrow keys to move.",
-  "Collect musical notes to increase your score!",
-  "Watch out for obstacles that might get in your way.",
-  "You can use power-ups to help you on your journey.",
-  "Try to reach the end of each level to progress.",
-  "The difficulty increases as you advance through levels.",
-  "Remember to use the spacebar for special actions.",
-  "You can pause the game by pressing 'P'.",
-  "Collect all achievements to become a music master!",
-  "Don't forget to save your progress regularly.",
+// Simplified dialogue structure using basic arrays
+const dialogues = [
+  // Dialogue ID 0: Welcome dialogue
+  [
+    "Welcome to Bit By Beat! Get ready to play some awesome music.",
+    "Use the controls to create your own beats and melodies.",
+    "Have fun exploring the world of music!",
+  ],
+
+  // Dialogue ID 1: Tutorial dialogue
+  [
+    "Let's learn how to use the instruments.",
+    "Click on different parts of the screen to interact with the game.",
+    "Try experimenting with different combinations to create unique sounds!",
+  ],
+
+  // Add more dialogues as needed
 ];
 
-// Function to trigger dialogue in the chat box
-function triggerDialogue(messageIndex) {
-  // Get the chat messages container
-  const chatMessages = document.querySelector(".chat-messages");
+/**
+ * Display dialogue in the chat box
+ * @param {number} dialogueId - The ID of the dialogue to display
+ */
+function triggerDialogue(dialogueId) {
+  console.log(`triggerDialogue called with ID: ${dialogueId}`);
 
-  // Check if the message index is valid
-  if (messageIndex >= 0 && messageIndex < dialogueMessages.length) {
-    // Create a new message element with NES.css styling
-    const messageElement = document.createElement("div");
-    messageElement.className = "message";
+  // Convert dialogueId to number if it's a string
+  dialogueId = parseInt(dialogueId, 10);
 
-    // Create the message balloon
-    const balloonElement = document.createElement("div");
-    balloonElement.className = "nes-balloon from-left";
-
-    // Create the text element
-    const textElement = document.createElement("p");
-    textElement.textContent = dialogueMessages[messageIndex];
-
-    // Assemble the message
-    balloonElement.appendChild(textElement);
-    messageElement.appendChild(balloonElement);
-
-    // Clear existing messages
-    chatMessages.innerHTML = "";
-
-    // Add the new message
-    chatMessages.appendChild(messageElement);
-
-    // Scroll to the bottom to ensure the message is visible
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  } else {
+  const dialogue = dialogues[dialogueId];
+  if (!dialogue) {
     console.error(
-      `Invalid dialogue index: ${messageIndex}. Must be between 0 and ${
-        dialogueMessages.length - 1
-      }.`
+      `Dialogue ID ${dialogueId} not found in dialogues array:`,
+      dialogues
     );
+    return;
   }
+
+  const chatMessages = document.querySelector(".chat-messages");
+  if (!chatMessages) {
+    console.error("Chat messages element not found. Creating one...");
+    // Create the element if it doesn't exist
+    const chatContainer = document.createElement("div");
+    chatContainer.className = "chat-messages";
+    document.body.appendChild(chatContainer);
+    console.log("Created chat-messages container");
+  }
+
+  const chatMessagesElement = document.querySelector(".chat-messages");
+  chatMessagesElement.innerHTML = ""; // Clear previous messages
+
+  // Loop through each message in the dialogue array
+  dialogue.forEach((messageText) => {
+    console.log(`Adding message: ${messageText}`);
+    const messageElement = document.createElement("div");
+    messageElement.textContent = messageText;
+    messageElement.className = "message";
+    chatMessagesElement.appendChild(messageElement);
+  });
+
+  // Scroll to the bottom of the chat
+  chatMessagesElement.scrollTop = chatMessagesElement.scrollHeight;
+
+  console.log(`Displayed dialogue ID: ${dialogueId}`);
 }
 
-// Optional: Function to add a message to the chat without clearing previous ones
-function addDialogue(messageIndex) {
-  // Get the chat messages container
-  const chatMessages = document.querySelector(".chat-messages");
+// Make sure triggerDialogue is explicitly in the global scope
+window.triggerDialogue = triggerDialogue;
 
-  // Check if the message index is valid
-  if (messageIndex >= 0 && messageIndex < dialogueMessages.length) {
-    // Create a new message element with NES.css styling
-    const messageElement = document.createElement("div");
-    messageElement.className = "message";
-
-    // Create the message balloon
-    const balloonElement = document.createElement("div");
-    balloonElement.className = "nes-balloon from-left";
-
-    // Create the text element
-    const textElement = document.createElement("p");
-    textElement.textContent = dialogueMessages[messageIndex];
-
-    // Assemble the message
-    balloonElement.appendChild(textElement);
-    messageElement.appendChild(balloonElement);
-
-    // Add the new message
-    chatMessages.appendChild(messageElement);
-
-    // Scroll to the bottom to ensure the message is visible
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  } else {
-    console.error(
-      `Invalid dialogue index: ${messageIndex}. Must be between 0 and ${
-        dialogueMessages.length - 1
-      }.`
-    );
-  }
-}
+console.log(
+  "dialogue.js loaded, triggerDialogue function is available in global scope:",
+  typeof window.triggerDialogue === "function"
+);
