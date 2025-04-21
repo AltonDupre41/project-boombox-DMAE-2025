@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="5_gouad"]
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="6_0kphk"]
 [ext_resource type="PackedScene" uid="uid://cvs5thrxbok4y" path="res://scenes/load_zone.tscn" id="7_qaqpg"]
-[ext_resource type="PackedScene" uid="uid://c0yabtdrfgni6" path="res://scenes/Rooms/Room1-3.tscn" id="8_7821u"]
+[ext_resource type="PackedScene" uid="uid://cg72gbbbir5ru" path="res://scenes/Rooms/Room2-2.tscn" id="9_f8uhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtk2"]
 size = Vector2(610, 58)
@@ -51,7 +51,7 @@ tile_set = ExtResource("4_vdxp2")
 
 [node name="LoadZone" parent="Col" instance=ExtResource("7_qaqpg")]
 position = Vector2(175, -150)
-Room = ExtResource("8_7821u")
+Room = ExtResource("9_f8uhx")
 
 [node name="DeathPlane" type="Area2D" parent="Col"]
 collision_layer = 2

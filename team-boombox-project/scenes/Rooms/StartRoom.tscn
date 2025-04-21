@@ -7,9 +7,9 @@
 [ext_resource type="TileSet" uid="uid://deqpy66mvaypp" path="res://assets/ColTiles.tres" id="3_ky7ww"]
 [ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="4_6ew4e"]
 [ext_resource type="TileSet" uid="uid://c1c4cjx0d8gtb" path="res://assets/ColorTiles.tres" id="4_dpxdp"]
-[ext_resource type="PackedScene" uid="uid://uccrqqp5fi0o" path="res://scenes/Rooms/Room1-2.tscn" id="4_yy0fk"]
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="5_oqylf"]
 [ext_resource type="TileSet" uid="uid://idv3vxfiyiqm" path="res://assets/BlockTiles.tres" id="9_etu1v"]
+[ext_resource type="PackedScene" uid="uid://uccrqqp5fi0o" path="res://scenes/Rooms/Room1-2.tscn" id="9_p4r5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lh734"]
 size = Vector2(610, 58)
@@ -55,7 +55,7 @@ tile_set = ExtResource("4_dpxdp")
 
 [node name="LoadZone" parent="Col" instance=ExtResource("3_jsr1u")]
 position = Vector2(195, -166)
-Room = ExtResource("4_yy0fk")
+Room = ExtResource("9_p4r5n")
 
 [node name="DeathPlane" type="Area2D" parent="Col"]
 collision_layer = 2
@@ -66,8 +66,6 @@ position = Vector2(1, 40)
 shape = SubResource("RectangleShape2D_lh734")
 
 [node name="Blocks" type="TileMapLayer" parent="Col"]
-visible = false
-tile_map_data = PackedByteArray("AAAGAPr/AAAAAAAAAAA=")
 tile_set = ExtResource("9_etu1v")
 
 [node name="Camera2D" type="Camera2D" parent="."]

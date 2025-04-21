@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="2_q5um3"]
 [ext_resource type="PackedScene" uid="uid://cvs5thrxbok4y" path="res://scenes/load_zone.tscn" id="3_brl3d"]
 [ext_resource type="TileSet" uid="uid://deqpy66mvaypp" path="res://assets/ColTiles.tres" id="3_uqtk2"]
-[ext_resource type="PackedScene" uid="uid://c0yabtdrfgni6" path="res://scenes/Rooms/Room1-3.tscn" id="4_mb5ba"]
 [ext_resource type="TileSet" uid="uid://c1c4cjx0d8gtb" path="res://assets/ColorTiles.tres" id="4_q5um3"]
 [ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="5_j4bjh"]
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="6_5j7um"]
+[ext_resource type="PackedScene" uid="uid://c0yabtdrfgni6" path="res://scenes/Rooms/Room1-3.tscn" id="9_q5um3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtk2"]
 size = Vector2(610, 58)
@@ -52,7 +52,7 @@ tile_set = ExtResource("4_q5um3")
 
 [node name="LoadZone" parent="Col" instance=ExtResource("3_brl3d")]
 position = Vector2(175, -158)
-Room = ExtResource("4_mb5ba")
+Room = ExtResource("9_q5um3")
 
 [node name="DeathPlane" type="Area2D" parent="Col"]
 collision_layer = 2

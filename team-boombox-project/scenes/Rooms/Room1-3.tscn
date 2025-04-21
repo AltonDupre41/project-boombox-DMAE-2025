@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://c0yabtdrfgni6"]
+[gd_scene load_steps=19 format=4 uid="uid://c0yabtdrfgni6"]
 
 [ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="1_5rhqi"]
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="1_fsqwb"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ehp2hu5lfy06" path="res://scenes/Rooms/Room2-1.tscn" id="8_xsy21"]
 [ext_resource type="Shader" uid="uid://bcujkq8rcooc0" path="res://PaletteSwap.gdshader" id="9_h3lx1"]
 [ext_resource type="Texture2D" uid="uid://co4k4tj7keh2t" path="res://assets/pal1.png" id="10_drlp1"]
+[ext_resource type="Texture2D" uid="uid://dcku7u260p3yv" path="res://assets/oldmanrc.png" id="10_ggjx0"]
 [ext_resource type="AudioStream" uid="uid://dwl4ebiadg3aw" path="res://assets/music/boombox-bassline1.wav" id="11_drlp1"]
 [ext_resource type="Texture2D" uid="uid://uoyfhgvn34b3" path="res://assets/pal4.png" id="11_xsy21"]
 [ext_resource type="AudioStream" uid="uid://dr1yerm47s6kd" path="res://assets/music/boombox-bassline2.wav" id="13_xsy21"]
@@ -40,6 +41,11 @@ material = ExtResource("1_g043e")
 position = Vector2(137, -207)
 scale = Vector2(0.2719, 0.381134)
 texture = ExtResource("1_fsqwb")
+
+[node name="Oldmanrc" type="Sprite2D" parent="."]
+position = Vector2(3.99999, -148)
+rotation = -0.071867
+texture = ExtResource("10_ggjx0")
 
 [node name="Col" type="Node2D" parent="."]
 use_parent_material = true

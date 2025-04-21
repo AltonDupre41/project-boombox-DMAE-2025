@@ -1,284 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0"
-    />
-    <title>Bit By Beat</title>
-    <link rel="icon" type="image/png" href="media/leftCornerLogo.png" />
-    <link rel="apple-touch-icon" href="media/leftCornerLogo.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <!-- NES.css -->
-    <link
-      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
-      rel="stylesheet"
-    />
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <a href="landing.html" class="corner-logo">
-      <img src="media/leftCornerLogo.png" alt="Logo" />
-    </a>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<title>Team Boombox Project</title>
+		<style>
+html, body, #canvas {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
 
-    <div class="header">
-      <div></div>
-      <!-- Title in the center of the header -->
-      <div class="header-title">Bit By Beat</div>
-      <button class="home-btn" onclick="window.location.href='landing.html'">
-        HOME
-      </button>
-      <div class="header-line"></div>
-    </div>
+body {
+	color: white;
+	background-color: black;
+	overflow: hidden;
+	touch-action: none;
+}
 
-    <h1 class="game-title"></h1>
+#canvas {
+	display: block;
+}
 
-    <div class="game-container">
-      <canvas id="canvas">
-        HTML5 canvas appears to be unsupported in the current browser.<br />
-        Please try updating or use a different browser.
-      </canvas>
-      <button id="fullscreen-btn" class="fullscreen-btn">FULLSCREEN</button>
-    </div>
+#canvas:focus {
+	outline: none;
+}
 
-    <!-- Chat box component - now empty by default -->
-    <!-- Chat box component with NES.css styling -->
-    <div class="chat-container">
-      <div class="nes-container with-title is-dark chat-box">
-        <p class="title">DIALOGUE</p>
-        <div class="chat-messages">
-          <!-- Dialogue messages will be added here dynamically -->
-        </div>
-      </div>
-    </div>
+#status, #status-splash, #status-progress {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
 
-    <div id="status">
-      <div
-        id="status-progress"
-        style="display: none"
-        oncontextmenu="event.preventDefault();"
-      >
-        <div id="status-progress-inner"></div>
-      </div>
-      <div
-        id="status-indeterminate"
-        style="display: none"
-        oncontextmenu="event.preventDefault();"
-      >
-        <div class="indeterminate-progress-box">
-          <div class="indeterminate-progress-div"></div>
-        </div>
-      </div>
-      <div id="status-notice" class="godot" style="display: none"></div>
-    </div>
+#status, #status-splash {
+	top: 0;
+	bottom: 0;
+}
 
-    <script src="index.js"></script>
-    <script src="dialogue.js"></script>
-    <script>
-      const GODOT_CONFIG = {
-        args: [],
-        canvasResizePolicy: 2,
-        executable: "index",
-        experimentalVK: false,
-        fileSizes: { "index.pck": 5533744, "index.wasm": 28972640 },
-        focusCanvas: true,
-        gdextensionLibs: [],
-      };
+#status {
+	background-color: #242424;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+}
 
-      var engine = new Engine(GODOT_CONFIG);
+#status-splash {
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+}
 
-      (function () {
-        const INDETERMINATE_STATUS_STEP_MS = 100;
-        var statusProgress = document.getElementById("status-progress");
-        var statusProgressInner = document.getElementById(
-          "status-progress-inner"
-        );
-        var statusIndeterminate = document.getElementById(
-          "status-indeterminate"
-        );
-        var statusNotice = document.getElementById("status-notice");
+#status-splash.show-image--false {
+	display: none;
+}
 
-        var initializing = true;
-        var statusMode = "hidden";
+#status-splash.fullsize--true {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
 
-        var animationCallbacks = [];
-        function animate(time) {
-          animationCallbacks.forEach((callback) => callback(time));
-          requestAnimationFrame(animate);
-        }
-        requestAnimationFrame(animate);
+#status-splash.use-filter--false {
+	image-rendering: pixelated;
+}
 
-        function setStatusMode(mode) {
-          if (statusMode === mode || !initializing) return;
-          [statusProgress, statusIndeterminate, statusNotice].forEach(
-            (elem) => {
-              elem.style.display = "none";
-            }
-          );
-          animationCallbacks = animationCallbacks.filter(function (value) {
-            return value !== animateStatusIndeterminate;
-          });
-          switch (mode) {
-            case "progress":
-              statusProgress.style.display = "block";
-              break;
-            case "indeterminate":
-              statusIndeterminate.style.display = "block";
-              animationCallbacks.push(animateStatusIndeterminate);
-              break;
-            case "notice":
-              statusNotice.style.display = "block";
-              break;
-            case "hidden":
-              break;
-            default:
-              throw new Error("Invalid status mode");
-          }
-          statusMode = mode;
-        }
+#status-progress, #status-notice {
+	display: none;
+}
 
-        function animateStatusIndeterminate(ms) {
-          var i = Math.floor((ms / INDETERMINATE_STATUS_STEP_MS) % 8);
-          if (statusIndeterminate.children[i].style.borderTopColor === "") {
-            Array.prototype.slice
-              .call(statusIndeterminate.children)
-              .forEach((child) => {
-                child.style.borderTopColor = "";
-              });
-            statusIndeterminate.children[i].style.borderTopColor = "#dfdfdf";
-          }
-        }
+#status-progress {
+	bottom: 10%;
+	width: 50%;
+	margin: 0 auto;
+}
 
-        function setStatusNotice(text) {
-          while (statusNotice.lastChild) {
-            statusNotice.removeChild(statusNotice.lastChild);
-          }
-          var lines = text.split("\n");
-          lines.forEach((line) => {
-            statusNotice.appendChild(document.createTextNode(line));
-            statusNotice.appendChild(document.createElement("br"));
-          });
-        }
+#status-notice {
+	background-color: #5b3943;
+	border-radius: 0.5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	line-height: 1.3;
+	margin: 0 2rem;
+	overflow: hidden;
+	padding: 1rem;
+	text-align: center;
+	z-index: 1;
+}
+		</style>
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
-        function displayFailureNotice(err) {
-          var msg = err.message || err;
-          console.error(msg);
-          setStatusNotice(msg);
-          setStatusMode("notice");
-          initializing = false;
-        }
+	</head>
+	<body>
+		<canvas id="canvas">
+			Your browser does not support the canvas tag.
+		</canvas>
 
-        if (!Engine.isWebGLAvailable()) {
-          displayFailureNotice("WebGL not available");
-        } else {
-          setStatusMode("indeterminate");
-          engine
-            .startGame({
-              onProgress: function (current, total) {
-                if (total > 0) {
-                  statusProgressInner.style.width =
-                    (current / total) * 100 + "%";
-                  setStatusMode("progress");
-                  if (current === total) {
-                    // wait for progress bar animation
-                    setTimeout(() => {
-                      setStatusMode("indeterminate");
-                    }, 500);
-                  }
-                } else {
-                  setStatusMode("indeterminate");
-                }
-              },
-            })
-            .then(() => {
-              setStatusMode("hidden");
-              initializing = false;
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
 
-              // Fix the game scaling after it loads
-              setTimeout(function () {
-                const gameContainer = document.querySelector(".game-container");
-                const canvas = document.getElementById("canvas");
+		<div id="status">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
+			<progress id="status-progress"></progress>
+			<div id="status-notice"></div>
+		</div>
 
-<<<<<<< HEAD
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":8983408,"index.wasm":52126319},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":9750480,"index.wasm":52126319},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
-=======
-                // Set the canvas to fit within the container
-                canvas.style.width = "100%";
-                canvas.style.height = "auto";
->>>>>>> 1ebbe582b21a8282b6389e8cb6ce37a16c3d7586
 
-                // Ensure the game is fully visible (not zoomed in)
-                const gameWidth = canvas.width;
-                const gameHeight = canvas.height;
-                const containerWidth = gameContainer.clientWidth;
+(function () {
+	const statusOverlay = document.getElementById('status');
+	const statusProgress = document.getElementById('status-progress');
+	const statusNotice = document.getElementById('status-notice');
 
-                // Calculate the proper height to maintain aspect ratio
-                const properHeight = (containerWidth / gameWidth) * gameHeight;
-                canvas.style.height = properHeight + "px";
+	let initializing = true;
+	let statusMode = '';
 
-                // Make sure the container adjusts to the canvas height
-                gameContainer.style.height = "auto";
+	function setStatusMode(mode) {
+		if (statusMode === mode || !initializing) {
+			return;
+		}
+		if (mode === 'hidden') {
+			statusOverlay.remove();
+			initializing = false;
+			return;
+		}
+		statusOverlay.style.visibility = 'visible';
+		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
+		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
+		statusMode = mode;
+	}
 
-                // Ensure the canvas is properly centered
-                canvas.style.margin = "0 auto";
+	function setStatusNotice(text) {
+		while (statusNotice.lastChild) {
+			statusNotice.removeChild(statusNotice.lastChild);
+		}
+		const lines = text.split('\n');
+		lines.forEach((line) => {
+			statusNotice.appendChild(document.createTextNode(line));
+			statusNotice.appendChild(document.createElement('br'));
+		});
+	}
 
-                // Display initial welcome message
-                triggerDialogue(0);
-              }, 500);
-            }, displayFailureNotice);
-        }
-      })();
+	function displayFailureNotice(err) {
+		console.error(err);
+		if (err instanceof Error) {
+			setStatusNotice(err.message);
+		} else if (typeof err === 'string') {
+			setStatusNotice(err);
+		} else {
+			setStatusNotice('An unknown error occurred.');
+		}
+		setStatusMode('notice');
+		initializing = false;
+	}
 
-      // Fullscreen functionality
-      document
-        .getElementById("fullscreen-btn")
-        .addEventListener("click", function () {
-          const gameContainer = document.querySelector(".game-container");
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
 
-          if (!document.fullscreenElement) {
-            if (gameContainer.requestFullscreen) {
-              gameContainer.requestFullscreen();
-            } else if (gameContainer.mozRequestFullScreen) {
-              gameContainer.mozRequestFullScreen();
-            } else if (gameContainer.webkitRequestFullscreen) {
-              gameContainer.webkitRequestFullscreen();
-            } else if (gameContainer.msRequestFullscreen) {
-              gameContainer.msRequestFullscreen();
-            }
-            this.textContent = "EXIT";
-          } else {
-            if (document.exitFullscreen) {
-              document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-              document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) {
-              document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-              document.msExitFullscreen();
-            }
-            this.textContent = "FULLSCREEN";
-          }
-        });
-
-      // Update button text when exiting fullscreen via Escape key
-      document.addEventListener("fullscreenchange", function () {
-        const fullscreenBtn = document.getElementById("fullscreen-btn");
-        fullscreenBtn.textContent = !document.fullscreenElement
-          ? "FULLSCREEN"
-          : "EXIT";
-      });
-
-      // Make the triggerDialogue function available to the Godot game
-      window.triggerDialogue = triggerDialogue;
-    </script>
-  </body>
+	if (missing.length !== 0) {
+		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+			let serviceWorkerRegistrationPromise;
+			try {
+				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
+			} catch (err) {
+				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
+			}
+			// There's a chance that installing the service worker would fix the issue
+			Promise.race([
+				serviceWorkerRegistrationPromise.then((registration) => {
+					if (registration != null) {
+						return Promise.reject(new Error('Service worker already exists.'));
+					}
+					return registration;
+				}).then(() => engine.installServiceWorker()),
+				// For some reason, `getRegistration()` can stall
+				new Promise((resolve) => {
+					setTimeout(() => resolve(), 2000);
+				}),
+			]).then(() => {
+				// Reload if there was no error.
+				window.location.reload();
+			}).catch((err) => {
+				console.error('Error while registering service worker:', err);
+			});
+		} else {
+			// Display the message as usual
+			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+			displayFailureNotice(missingMsg + missing.join('\n'));
+		}
+	} else {
+		setStatusMode('progress');
+		engine.startGame({
+			'onProgress': function (current, total) {
+				if (current > 0 && total > 0) {
+					statusProgress.value = current;
+					statusProgress.max = total;
+				} else {
+					statusProgress.removeAttribute('value');
+					statusProgress.removeAttribute('max');
+				}
+			},
+		}).then(() => {
+			setStatusMode('hidden');
+		}, displayFailureNotice);
+	}
+}());
+		</script>
+	</body>
 </html>
+
