@@ -38,25 +38,25 @@
 
     <h1 class="game-title"></h1>
 
-    <div class="game-container">
-      <canvas id="canvas">
-        HTML5 canvas appears to be unsupported in the current browser.<br />
-        Please try updating or use a different browser.
-      </canvas>
-      <button id="fullscreen-btn" class="fullscreen-btn">FULLSCREEN</button>
-    </div>
+    <div class="game-wrapper">
+      <div class="game-container">
+        <canvas id="canvas">
+          HTML5 canvas appears to be unsupported in the current browser.<br />
+          Please try updating or use a different browser.
+        </canvas>
+        <button id="fullscreen-btn" class="fullscreen-btn">FULLSCREEN</button>
+      </div>
 
-    <!-- Chat box component - now empty by default -->
-    <!-- Chat box component with NES.css styling -->
-    <div class="chat-container">
-      <div class="nes-container with-title is-dark chat-box">
-        <p class="title">DIALOGUE</p>
-        <div class="chat-messages">
-          <!-- Dialogue messages will be added here dynamically -->
+      <!-- Vertical dialogue box on the right -->
+      <div class="chat-container">
+        <div class="nes-container with-title is-dark chat-box">
+          <p class="title">DIALOGUE</p>
+          <div class="chat-messages">
+            <!-- Dialogue messages will be added here dynamically -->
+          </div>
         </div>
       </div>
     </div>
-
     <div id="status">
       <div
         id="status-progress"
@@ -77,8 +77,9 @@
       <div id="status-notice" class="godot" style="display: none"></div>
     </div>
 
-    <script src="index.js"></script>
     <script src="dialogue.js"></script>
+    <script src="index.js"></script>
+
     <script>
       const GODOT_CONFIG = {
         args: [],
@@ -204,17 +205,9 @@
                 const gameContainer = document.querySelector(".game-container");
                 const canvas = document.getElementById("canvas");
 
-<<<<<<< HEAD
-		<script src="index.js"></script>
-		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":8983408,"index.wasm":52126319},"focusCanvas":true,"gdextensionLibs":[]};
-const GODOT_THREADS_ENABLED = false;
-const engine = new Engine(GODOT_CONFIG);
-=======
                 // Set the canvas to fit within the container
                 canvas.style.width = "100%";
                 canvas.style.height = "auto";
->>>>>>> 1ebbe582b21a8282b6389e8cb6ce37a16c3d7586
 
                 // Ensure the game is fully visible (not zoomed in)
                 const gameWidth = canvas.width;
@@ -232,7 +225,6 @@ const engine = new Engine(GODOT_CONFIG);
                 canvas.style.margin = "0 auto";
 
                 // Display initial welcome message
-                triggerDialogue(0);
               }, 500);
             }, displayFailureNotice);
         }
