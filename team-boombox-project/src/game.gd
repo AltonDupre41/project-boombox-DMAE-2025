@@ -80,10 +80,11 @@ func _gearGet(gear):
 	if gear.gearRoute > -1:
 		gearRoute = gear.gearRoute
 		$Entities/Player.gearRoute = gear.gearRoute
-	await get_tree().process_frame
-	gearCheck()
 	if gear.gearDia != -1:
 		$Room.get_child(0).handleDialouge(gear.gearDia)
+	await get_tree().process_frame
+	gearCheck()
+	
 
 func _nearGear(track,dist, overide):
 	if overide:

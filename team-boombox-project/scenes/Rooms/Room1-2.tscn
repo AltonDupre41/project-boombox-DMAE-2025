@@ -16,7 +16,6 @@ size = Vector2(610, 58)
 [node name="Room" type="Node2D"]
 material = ExtResource("1_sc6y5")
 script = ExtResource("2_q5um3")
-dialogSignal = "-1"
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false

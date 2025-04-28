@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var dialogSignal = -1
+@export var dialogSignal:int = -1
 
 @export var hasGears = false
 
