@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://byclep056nn7m"]
+[gd_scene load_steps=44 format=3 uid="uid://byclep056nn7m"]
 
 [ext_resource type="Script" uid="uid://kec5ldcl24pl" path="res://src/player.gd" id="1_qe2h8"]
 [ext_resource type="Texture2D" uid="uid://c76sb4mrpsnmq" path="res://assets/Boombi/RobotJump.png" id="2_qhqgy"]
@@ -284,6 +284,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yq2fn"]
 size = Vector2(19, 21)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhqgy"]
+bg_color = Color(1, 0.21831, 0.706305, 1)
+
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 4
@@ -338,6 +341,18 @@ shape = SubResource("RectangleShape2D_yq2fn")
 debug_color = Color(0.966124, 2.21401e-06, 0.482475, 0.42)
 
 [node name="LadderMark" type="Marker2D" parent="."]
+
+[node name="DashBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = 13.0
+offset_top = -21.0
+offset_right = 17.0
+offset_bottom = 6.0
+rotation = 1.57079
+theme_override_styles/fill = SubResource("StyleBoxFlat_qhqgy")
+value = 100.0
+fill_mode = 3
+show_percentage = false
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cg72gbbbir5ru"]
+[gd_scene load_steps=14 format=4 uid="uid://cg72gbbbir5ru"]
 
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_l52yp"]
 [ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="2_osaji"]
@@ -8,8 +8,10 @@
 [ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="6_ptxg4"]
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="7_7p60a"]
 [ext_resource type="PackedScene" uid="uid://cvs5thrxbok4y" path="res://scenes/load_zone.tscn" id="8_rp7jr"]
-[ext_resource type="PackedScene" uid="uid://c6jgkvmgaatnl" path="res://scenes/d_ummy.tscn" id="9_mdsct"]
+[ext_resource type="PackedScene" uid="uid://b6tp64shakbd5" path="res://scenes/Rooms/Room2-3.tscn" id="9_tp1ai"]
 [ext_resource type="PackedScene" uid="uid://oubf54nt26q" path="res://scenes/moving_platform.tscn" id="10_osaji"]
+[ext_resource type="PackedScene" uid="uid://ci72imcemqo47" path="res://scenes/Rooms/Room2-3-alt.tscn" id="10_smqr0"]
+[ext_resource type="Texture2D" uid="uid://xsdy30avuesj" path="res://assets/Arrow.png" id="12_smqr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtk2"]
 size = Vector2(610, 58)
@@ -17,6 +19,7 @@ size = Vector2(610, 58)
 [node name="Room" type="Node2D"]
 material = ExtResource("1_l52yp")
 script = ExtResource("2_osaji")
+dialogSignal = "-1"
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -35,23 +38,26 @@ tile_set = ExtResource("4_smqr0")
 [node name="TileMapLayer1" type="TileMapLayer" parent="Col"]
 texture_filter = 1
 material = ExtResource("1_l52yp")
+tile_map_data = PackedByteArray("AADu/+//AAADAAEAAADu//D/AAADAAEAAADu//H/AAADAAEAAADu//L/AAADAAEAAADu//P/AAADAAEAAADu//T/AAADAAEAAADu//X/AAADAAEAAADu//b/AAADAAEAAADu//f/AAADAAEAAADu//j/AAADAAEAAADu//n/AAADAAEAAADv//r/AAADAAEAAADw//r/AAADAAEAAADw//v/AAADAAEAAADx//r/AAADAAEAAADx//v/AAADAAEAAADy//r/AAADAAEAAADy//v/AAADAAEAAADy//z/AAADAAEAAADz//r/AAADAAEAAADz//v/AAADAAEAAADz//z/AAADAAEAAADz//3/AAADAAEAAAD0//v/AAADAAEAAAD0//z/AAADAAEAAAD0//3/AAADAAEAAAD0//7/AAADAAEAAAD1//z/AAADAAEAAAD1//3/AAADAAEAAAD1//7/AAADAAEAAAD2//7/AAADAAEAAAD3//7/AAADAAEAAAAEAP7/AAADAAEAAAAFAP7/AAADAAEAAAAGAP7/AAADAAEAAAAHAPj/AAADAAAAAAAHAPn/AAADAAAAAAAIAPf/AAADAAAAAAAIAPj/AAAEAAAAAAAIAPn/AAAEAAAAAAAIAPz/AAADAAEAAAAJAPb/AAADAAAAAAAJAPf/AAAEAAAAAAAJAPj/AAADAAAAAAAJAPz/AAADAAEAAAAKAPb/AAAEAAAAAAAKAPf/AAAEAAAAAAAKAPn/AAAEAAAAAAAKAPz/AAADAAEAAAALAPX/AAADAAAAAAALAPb/AAAFAAMAAAALAPf/AAADAAAAAAALAPn/AAADAAAAAAAMAPX/AAAEAAAAAAAMAPb/AAAEAAAAAAAMAPj/AAAEAAAAAAAMAPn/AAAFAAMAAAANAPX/AAADAAAAAAANAPb/AAADAAAAAAANAPj/AAADAAAAAAANAPn/AAAFAAMAAAAOAPX/AAAEAAAAAAAOAPb/AAAFAAMAAAAOAPf/AAAEAAAAAAAOAPn/AAAEAAAAAAAPAPX/AAADAAAAAAAPAPb/AAAEAAAAAAAPAPf/AAADAAAAAAAPAPj/AAAEAAAAAAAPAPn/AAADAAAAAAAQAPX/AAADAAAAAAAQAPb/AAADAAAAAAAQAPj/AAAEAAAAAAARAPX/AAAEAAAAAAARAPb/AAAEAAAAAAARAPj/AAADAAAAAAA=")
 tile_set = ExtResource("5_hmeaw")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("6_ptxg4")
 tile_set = ExtResource("5_hmeaw")
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("7_7p60a")
 tile_set = ExtResource("5_hmeaw")
 
 [node name="LoadZone" parent="Col" instance=ExtResource("8_rp7jr")]
-position = Vector2(322, -151)
-Room = ExtResource("9_mdsct")
+position = Vector2(269, -202)
+Room = ExtResource("9_tp1ai")
+AltRoom = ExtResource("10_smqr0")
+hasAlt = true
 
 [node name="DeathPlane" type="Area2D" parent="Col"]
 collision_layer = 2
@@ -74,6 +80,11 @@ BACK = true
 position = Vector2(-91, -208)
 x_DIR = true
 BACK = true
+
+[node name="Arrow" type="Sprite2D" parent="Col"]
+position = Vector2(229, -207)
+scale = Vector2(0.0779335, 0.0918367)
+texture = ExtResource("12_smqr0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -111)

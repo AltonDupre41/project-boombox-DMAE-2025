@@ -17,6 +17,7 @@ size = Vector2(610, 58)
 [node name="StartRoom" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_p4r5n")
+dialogSignal = 0
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -73,4 +74,4 @@ position = Vector2(0, -111)
 zoom = Vector2(3, 3)
 
 [node name="NewPlayerPos" type="Marker2D" parent="."]
-position = Vector2(-178, -147)
+position = Vector2(-127, -103)

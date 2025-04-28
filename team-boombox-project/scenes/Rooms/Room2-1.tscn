@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ehp2hu5lfy06"]
+[gd_scene load_steps=12 format=4 uid="uid://ehp2hu5lfy06"]
 
 [ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="1_66aik"]
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="2_f8uhx"]
@@ -9,13 +9,16 @@
 [ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="6_0kphk"]
 [ext_resource type="PackedScene" uid="uid://cvs5thrxbok4y" path="res://scenes/load_zone.tscn" id="7_qaqpg"]
 [ext_resource type="PackedScene" uid="uid://cg72gbbbir5ru" path="res://scenes/Rooms/Room2-2.tscn" id="9_f8uhx"]
+[ext_resource type="Texture2D" uid="uid://dcku7u260p3yv" path="res://assets/oldmanrc.png" id="10_i4fx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtk2"]
 size = Vector2(610, 58)
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("tutorialLabel")]
 material = ExtResource("1_66aik")
 script = ExtResource("2_i4fx6")
+dialogSignal = 4
+tutorialLabel = NodePath("pwr1")
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -37,13 +40,13 @@ material = ExtResource("1_66aik")
 tile_map_data = PackedByteArray("AAD0//L/AAADAAEAAAD0//P/AAADAAEAAAD0//T/AAADAAEAAAD0//X/AAADAAEAAAD0//b/AAADAAEAAAD0//f/AAADAAEAAAD0//j/AAADAAEAAAD0//n/AAADAAEAAAD0//r/AAADAAEAAAD0//v/AAADAAEAAAD0//z/AAADAAEAAAD0//3/AAADAAEAAAD0//7/AAADAAEAAAD0////AAADAAEAAAD1//7/AAADAAAAAAD1////AAADAAAAAAD3//7/AAADAAAAAAD3////AAADAAAAAAD4//7/AAADAAAAAAABAP7/AAADAAAAAAACAP//AAADAAAAAAADAP7/AAADAAAAAAAEAPr/AAADAAEAAAAEAPv/AAADAAEAAAAEAPz/AAADAAEAAAAEAP3/AAADAAEAAAAEAP//AAADAAAAAAAFAPn/AAADAAEAAAAFAP7/AAADAAAAAAAFAP//AAADAAAAAAAGAPn/AAADAAEAAAAHAPn/AAADAAEAAAAHAP7/AAADAAAAAAAHAP//AAADAAAAAAAIAPn/AAADAAEAAAAJAPn/AAADAAEAAAAJAP7/AAADAAAAAAAKAPn/AAADAAEAAAAKAP//AAADAAAAAAALAPn/AAADAAEAAAALAP7/AAADAAAAAAAMAPn/AAADAAEAAAAMAP//AAADAAAAAAANAPn/AAADAAEAAAANAPr/AAADAAEAAAANAPv/AAADAAEAAAANAPz/AAADAAEAAAANAP3/AAADAAEAAAANAP7/AAADAAEAAAAFAPr/AAADAAEAAAA=")
 tile_set = ExtResource("4_vdxp2")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("5_gouad")
 tile_set = ExtResource("4_vdxp2")
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("6_0kphk")
@@ -67,3 +70,14 @@ zoom = Vector2(3, 3)
 
 [node name="NewPlayerPos" type="Marker2D" parent="."]
 position = Vector2(-160, -51)
+
+[node name="pwr1" type="Label" parent="."]
+offset_left = -155.0
+offset_top = -120.0
+offset_right = -115.0
+offset_bottom = -97.0
+
+[node name="Oldmanrc" type="Sprite2D" parent="."]
+position = Vector2(37, -53)
+rotation = -0.071867
+texture = ExtResource("10_i4fx6")

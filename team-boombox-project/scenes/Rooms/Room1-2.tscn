@@ -16,6 +16,7 @@ size = Vector2(610, 58)
 [node name="Room" type="Node2D"]
 material = ExtResource("1_sc6y5")
 script = ExtResource("2_q5um3")
+dialogSignal = "-1"
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -38,13 +39,13 @@ texture_filter = 1
 material = ExtResource("1_sc6y5")
 tile_set = ExtResource("4_q5um3")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("5_j4bjh")
 tile_set = ExtResource("4_q5um3")
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("6_5j7um")

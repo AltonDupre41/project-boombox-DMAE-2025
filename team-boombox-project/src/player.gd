@@ -29,6 +29,8 @@ var floatPwr = false
 var pushPwr = false
 var pullPwr = false
 
+var gearRoute = -1
+
 func _ready() -> void:
 	pass
 
@@ -40,6 +42,9 @@ func _physics_process(delta: float) -> void:
 		PLATFORM:
 			movement_dir = round(Input.get_vector("Left","Right","Down","Up"))
 			handleMovement(delta)
+			if !$DashTimer.is_stopped():
+				var value = $DashTimer.time_left/$DashTimer.wait_time
+				$DashBar.value = lerp(100,0,value)
 	
 
 func _input(_event: InputEvent) -> void:
@@ -161,14 +166,16 @@ func _on_damage_body_entered(body: Node2D) -> void:
 func _on_dash_timer_timeout() -> void:
 	can_dash = true
 
-func givePower(num):
+func givePower(num, give = true):
 	match num:
-		0: jumpPwr = true
-		1: ladderPwr = true
-		2: pushPwr = true
-		3: pullPwr = true
-		4: dashPwr = true
-		5: floatPwr = true
+		0: jumpPwr = give
+		1: ladderPwr = give
+		2: pushPwr = give
+		3: pullPwr = give
+		4: 
+			dashPwr = give
+			$DashBar.show()
+		5: floatPwr = give
 
 
 func _on_damage_area_entered(area: Area2D) -> void:

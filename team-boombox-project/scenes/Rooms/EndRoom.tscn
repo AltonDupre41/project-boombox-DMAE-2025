@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=4 uid="uid://8fwd3ouraf7m"]
+
+[ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="1_kbilr"]
+[ext_resource type="Material" uid="uid://nhde4wf0sxoy" path="res://assets/layer1.tres" id="2_ll52j"]
+[ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="3_wuh8h"]
+[ext_resource type="TileSet" uid="uid://deqpy66mvaypp" path="res://assets/ColTiles.tres" id="4_qfc1i"]
+[ext_resource type="TileSet" uid="uid://c1c4cjx0d8gtb" path="res://assets/ColorTiles.tres" id="5_lcf8x"]
+[ext_resource type="Material" uid="uid://j6x87oodc6iw" path="res://assets/layer2.tres" id="6_447wt"]
+[ext_resource type="Material" uid="uid://v7xnq4blqk7y" path="res://assets/layer3.tres" id="7_tyh3v"]
+[ext_resource type="TileSet" uid="uid://idv3vxfiyiqm" path="res://assets/BlockTiles.tres" id="10_m6y8i"]
+
+[node name="StartRoom" type="Node2D"]
+use_parent_material = true
+script = ExtResource("1_kbilr")
+dialogSignal = 17
+
+[node name="TrashBackGround" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("2_ll52j")
+position = Vector2(394, -157.813)
+scale = Vector2(0.2719, 0.381134)
+texture = ExtResource("3_wuh8h")
+
+[node name="Col" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="ColLayer" type="TileMapLayer" parent="Col"]
+tile_map_data = PackedByteArray("AADt//T/AQADAAEAAADu//T/AQADAAEAAADv//T/AQADAAEAAADw//T/AQADAAEAAADx//T/AQADAAEAAADy//T/AQADAAEAAADz//T/AQADAAEAAADz//X/AQADAAEAAADz//b/AQADAAEAAADz//f/AQADAAEAAADz//j/AQADAAEAAADz//n/AQADAAEAAADy//r/AQADAAEAAADz//r/AQADAAEAAADx//r/AQADAAEAAADw//r/AQADAAEAAADv//r/AQADAAEAAADu//r/AQADAAEAAADt//r/AQADAAEAAADs//r/AQADAAEAAADs//n/AQADAAEAAADs//j/AQADAAEAAADs//f/AQADAAEAAADs//b/AQADAAEAAADs//X/AQADAAEAAADs//T/AQADAAEAAAA=")
+tile_set = ExtResource("4_qfc1i")
+
+[node name="TileMapLayer1" type="TileMapLayer" parent="Col"]
+visible = false
+texture_filter = 1
+material = ExtResource("2_ll52j")
+tile_map_data = PackedByteArray("AAD6//z/AAACAAAAAAD6//3/AAACAAEAAAD6//7/AAABAAEAAAD7//3/AAABAAAAAAD7//7/AAACAAEAAAD8//7/AAABAAEAAAD8////AAACAAEAAAD9//7/AAACAAAAAAD9////AAABAAEAAAD+//7/AAACAAAAAAD+////AAACAAEAAAD///v/AAABAAAAAAADAPv/AAABAAAAAAADAPz/AAACAAEAAAADAP3/AAABAAEAAAAEAPv/AAACAAAAAAAEAPz/AAABAAEAAAAEAP3/AAACAAEAAAAFAPv/AAABAAAAAAAFAPz/AAACAAEAAAAFAP3/AAABAAEAAAAGAPv/AAACAAAAAAD1//j/AAACAAAAAAD1//n/AAABAAEAAAD1//r/AAACAAEAAAD2//j/AAABAAAAAAD2//n/AAACAAEAAAD2//r/AAABAAEAAAD3//v/AAABAAAAAAD3//z/AAABAAEAAAD3//3/AAABAAEAAAD4//v/AAACAAAAAAD4//z/AAABAAEAAAD4//3/AAACAAEAAAD5//v/AAABAAAAAAD5//z/AAACAAEAAAD5//3/AAABAAEAAAD7////AAABAAEAAAD8//3/AAACAAAAAAD///z/AAACAAEAAAD///3/AAACAAEAAAAAAPv/AAACAAAAAAAAAPz/AAACAAEAAAAAAP3/AAACAAEAAAABAPn/AAABAAAAAAABAPr/AAACAAEAAAABAPv/AAABAAEAAAACAPn/AAACAAAAAAACAPr/AAABAAEAAAACAPv/AAACAAEAAAAFAPj/AAADAAAAAAAGAPj/AAAEAAAAAAAGAPz/AAACAAEAAAAGAP3/AAACAAEAAAAHAPv/AAABAAAAAAAHAPz/AAABAAEAAAAHAP3/AAACAAEAAAAIAPv/AAACAAAAAAAIAPz/AAACAAEAAAAIAP3/AAABAAEAAAAJAPv/AAABAAAAAAAJAPz/AAACAAEAAAAJAP3/AAACAAEAAAAKAPj/AAABAAAAAAAKAPn/AAABAAEAAAAKAPr/AAABAAEAAAALAPj/AAACAAAAAAALAPn/AAACAAEAAAALAPr/AAACAAEAAAAMAPj/AAABAAAAAAAMAPn/AAACAAEAAAAMAPr/AAACAAEAAAANAPj/AAACAAAAAAA=")
+tile_set = ExtResource("5_lcf8x")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
+visible = false
+texture_filter = 1
+material = ExtResource("6_447wt")
+tile_map_data = PackedByteArray("AAD9//z/AAADAAMAAAD9//3/AAADAAMAAAD+//z/AAADAAMAAAD+//3/AAADAAMAAAD3//j/AAADAAMAAAD3//n/AAADAAMAAAD3//r/AAADAAMAAAD4//n/AAADAAMAAAD4//r/AAADAAMAAAD5//r/AAADAAMAAAD6//r/AAADAAMAAAD6//v/AAADAAMAAAD7//v/AAADAAMAAAD7//z/AAADAAMAAAD8//v/AAADAAMAAAD8//z/AAADAAMAAAD9//v/AAADAAMAAAD+//v/AAADAAMAAAAAAPn/AAADAAMAAAAAAPr/AAADAAMAAAADAPr/AAADAAMAAAAEAPn/AAADAAMAAAAEAPr/AAADAAMAAAAFAPn/AAADAAMAAAAFAPr/AAADAAMAAAAGAPn/AAADAAMAAAAGAPr/AAADAAMAAAAHAPj/AAADAAMAAAAHAPn/AAADAAMAAAAHAPr/AAADAAMAAAAIAPn/AAADAAMAAAAIAPr/AAADAAMAAAAJAPn/AAADAAMAAAAJAPr/AAADAAMAAAA=")
+tile_set = ExtResource("5_lcf8x")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
+visible = false
+texture_filter = 1
+material = ExtResource("7_tyh3v")
+tile_map_data = PackedByteArray("AAD6////AAABAAEAAAADAP7/AAABAAEAAAADAP//AAABAAEAAAAEAP7/AAACAAEAAAAEAP//AAABAAEAAAAFAP7/AAACAAEAAAAFAP//AAACAAEAAAAGAP7/AAACAAEAAAAGAP//AAABAAEAAAD1//v/AAACAAEAAAD1//z/AAACAAEAAAD1//3/AAACAAEAAAD1//7/AAABAAEAAAD1////AAABAAEAAAD2//v/AAACAAEAAAD2//z/AAABAAEAAAD2//3/AAABAAEAAAD2//7/AAACAAEAAAD2////AAACAAEAAAD3//7/AAABAAEAAAD3////AAACAAEAAAD4//7/AAACAAEAAAD4////AAABAAEAAAD5//7/AAACAAEAAAD5////AAABAAEAAAD///7/AAACAAEAAAD/////AAACAAEAAAAAAP7/AAABAAEAAAAAAP//AAABAAEAAAABAPz/AAACAAEAAAABAP3/AAABAAEAAAABAP7/AAABAAEAAAABAP//AAACAAEAAAACAPz/AAACAAEAAAACAP3/AAABAAEAAAACAP7/AAABAAEAAAACAP//AAABAAEAAAAHAP7/AAABAAEAAAAHAP//AAACAAEAAAAIAP7/AAABAAEAAAAIAP//AAABAAEAAAAJAP7/AAACAAEAAAAJAP//AAACAAEAAAAKAPv/AAABAAEAAAAKAPz/AAABAAEAAAAKAP3/AAACAAEAAAAKAP7/AAACAAEAAAAKAP//AAABAAEAAAALAPv/AAABAAEAAAALAPz/AAACAAEAAAALAP3/AAACAAEAAAALAP7/AAACAAEAAAALAP//AAACAAEAAAAMAPv/AAACAAEAAAAMAPz/AAACAAEAAAAMAP3/AAACAAEAAAAMAP7/AAACAAEAAAAMAP//AAABAAEAAAANAPn/AAABAAEAAAANAPr/AAABAAEAAAANAPv/AAACAAEAAAANAPz/AAACAAEAAAANAP3/AAACAAEAAAANAP7/AAABAAEAAAANAP//AAACAAEAAAA=")
+tile_set = ExtResource("5_lcf8x")
+
+[node name="DeathPlane" type="Area2D" parent="Col"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Blocks" type="TileMapLayer" parent="Col"]
+tile_set = ExtResource("10_m6y8i")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -111)
+zoom = Vector2(3, 3)
+
+[node name="NewPlayerPos" type="Marker2D" parent="."]
+position = Vector2(-252, -152)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -192.0
+offset_top = -221.0
+offset_right = 193.0
+offset_bottom = 4.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Boombi Has Made It to the Concert
+Fully Inspired!
+(Press Enter to Restart)"
+horizontal_alignment = 1

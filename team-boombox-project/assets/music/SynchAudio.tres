@@ -3,9 +3,11 @@
 [ext_resource type="AudioStream" uid="uid://cckyr2vesa8l0" path="res://assets/music/boombox-beat1(normaltime).wav" id="2_i7w38"]
 
 [resource]
-stream_count = 4
+stream_count = 6
 stream_0/stream = ExtResource("2_i7w38")
 stream_0/volume = 0.0
 stream_1/volume = 0.0
 stream_2/volume = 0.0
 stream_3/volume = 0.0
+stream_4/volume = 0.0
+stream_5/volume = 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c0yabtdrfgni6"]
+[gd_scene load_steps=18 format=4 uid="uid://c0yabtdrfgni6"]
 
 [ext_resource type="Script" uid="uid://cx7w33nioshm8" path="res://src/Room.gd" id="1_5rhqi"]
 [ext_resource type="Texture2D" uid="uid://3wj3aju73tw5" path="res://assets/TrashBackGround.png" id="1_fsqwb"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ehp2hu5lfy06" path="res://scenes/Rooms/Room2-1.tscn" id="8_xsy21"]
 [ext_resource type="Shader" uid="uid://bcujkq8rcooc0" path="res://PaletteSwap.gdshader" id="9_h3lx1"]
 [ext_resource type="Texture2D" uid="uid://co4k4tj7keh2t" path="res://assets/pal1.png" id="10_drlp1"]
-[ext_resource type="Texture2D" uid="uid://dcku7u260p3yv" path="res://assets/oldmanrc.png" id="10_ggjx0"]
 [ext_resource type="AudioStream" uid="uid://dwl4ebiadg3aw" path="res://assets/music/boombox-bassline1.wav" id="11_drlp1"]
 [ext_resource type="Texture2D" uid="uid://uoyfhgvn34b3" path="res://assets/pal4.png" id="11_xsy21"]
 [ext_resource type="AudioStream" uid="uid://dr1yerm47s6kd" path="res://assets/music/boombox-bassline2.wav" id="13_xsy21"]
@@ -34,6 +33,8 @@ shader_parameter/fps = 0.0
 [node name="Room" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_5rhqi")
+dialogSignal = 1
+hasGears = true
 
 [node name="TrashBackGround" type="Sprite2D" parent="."]
 visible = false
@@ -41,11 +42,6 @@ material = ExtResource("1_g043e")
 position = Vector2(137, -207)
 scale = Vector2(0.2719, 0.381134)
 texture = ExtResource("1_fsqwb")
-
-[node name="Oldmanrc" type="Sprite2D" parent="."]
-position = Vector2(3.99999, -148)
-rotation = -0.071867
-texture = ExtResource("10_ggjx0")
 
 [node name="Col" type="Node2D" parent="."]
 use_parent_material = true
@@ -62,13 +58,13 @@ material = ExtResource("1_g043e")
 tile_map_data = PackedByteArray("AADx//v/AAACAAAAAADy//v/AAABAAAAAADz//v/AAACAAAAAAD0//v/AAABAAAAAAD1//v/AAACAAAAAAD2//v/AAABAAAAAAD3//v/AAACAAAAAAD4//v/AAABAAAAAAD5//v/AAACAAAAAAD6//v/AAABAAAAAAD7//v/AAACAAAAAAD8//v/AAABAAAAAAD9//v/AAACAAAAAAD+//v/AAABAAAAAAD///v/AAACAAAAAAAFAPv/AAABAAAAAAAGAPv/AAACAAAAAADt//X/AAABAAEAAADt//b/AAABAAEAAADt//f/AAABAAEAAADt//j/AAABAAEAAADt//n/AAABAAEAAADt//r/AAABAAEAAADt//v/AAABAAEAAADt//z/AAABAAEAAADt//3/AAABAAEAAADt//7/AAABAAEAAADt////AAABAAEAAADt/wAAAAABAAEAAADt/wEAAAABAAEAAADt/wIAAAABAAEAAADv//3/AAABAAEAAADv//7/AAABAAEAAADv////AAABAAEAAADv/wAAAAABAAEAAADv/wEAAAABAAEAAADv/wIAAAABAAEAAADw/wAAAAACAAEAAADw/wEAAAACAAEAAADw/wIAAAACAAEAAADx//z/AAABAAEAAADx//3/AAABAAEAAADx//7/AAABAAEAAADx////AAABAAEAAADx/wEAAAABAAEAAADx/wIAAAABAAEAAADy//z/AAACAAEAAADy//3/AAACAAEAAADy//7/AAACAAEAAADy////AAACAAEAAADy/wEAAAACAAEAAADy/wIAAAACAAEAAADz//z/AAABAAEAAADz//3/AAABAAEAAADz//7/AAABAAEAAADz////AAABAAEAAADz/wIAAAABAAEAAAD0/wIAAAACAAEAAAD1//z/AAABAAEAAAD1//3/AAABAAEAAAD1//7/AAABAAEAAAD1////AAABAAEAAAD1/wIAAAABAAEAAAD2/wIAAAACAAEAAAD3/wIAAAABAAEAAAD4/wIAAAACAAEAAAD5/wIAAAABAAEAAAD6/wIAAAACAAEAAAD7//z/AAABAAEAAAD7//3/AAABAAEAAAD7//7/AAABAAEAAAD7////AAABAAEAAAD7/wIAAAABAAEAAAD8/wEAAAACAAEAAAD8/wIAAAACAAEAAAD9//z/AAABAAEAAAD9//3/AAABAAEAAAD9//7/AAABAAEAAAD9////AAABAAEAAAD9/wEAAAABAAEAAAD9/wIAAAABAAEAAAD+//z/AAACAAEAAAD+//3/AAACAAEAAAD+//7/AAACAAEAAAD+////AAACAAEAAAD+/wAAAAACAAEAAAD+/wEAAAACAAEAAAD+/wIAAAACAAEAAAD//wAAAAABAAEAAAD//wEAAAABAAEAAAD//wIAAAABAAEAAAAAAPz/AAACAAEAAAAAAP3/AAACAAEAAAAAAP7/AAACAAEAAAAAAP//AAACAAEAAAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAEAAAABAPz/AAABAAEAAAABAP3/AAABAAEAAAABAP7/AAABAAEAAAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAACAPz/AAACAAEAAAACAP3/AAACAAEAAAACAP7/AAACAAEAAAACAAAAAAACAAEAAAACAAEAAAACAAEAAAACAAIAAAACAAEAAAADAPz/AAABAAEAAAADAP3/AAABAAEAAAADAP7/AAABAAEAAAADAAAAAAABAAEAAAADAAEAAAABAAEAAAADAAIAAAABAAEAAAAEAPz/AAACAAEAAAAEAP//AAACAAEAAAAEAAAAAAACAAEAAAAEAAEAAAACAAEAAAAEAAIAAAACAAEAAAAFAAIAAAABAAEAAAAGAPz/AAACAAEAAAAGAP3/AAACAAEAAAAGAP7/AAACAAEAAAA=")
 tile_set = ExtResource("5_2ebbs")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("6_kcjr2")
 tile_set = ExtResource("5_2ebbs")
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Col"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Col"]
 visible = false
 texture_filter = 1
 material = ExtResource("7_pit1l")
@@ -92,15 +88,19 @@ audio = ExtResource("11_drlp1")
 track = 1
 pal = ExtResource("10_drlp1")
 power = 0
+gearRoute = 0
+gearDia = 2
 
 [node name="Gear 2" parent="." instance=ExtResource("4_g0y6c")]
 material = SubResource("ShaderMaterial_ggjx0")
 position = Vector2(73, -171)
 gearNum = 1
 audio = ExtResource("13_xsy21")
-track = 3
+track = 1
 pal = ExtResource("11_xsy21")
 power = 1
+gearRoute = 1
+gearDia = 3
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1

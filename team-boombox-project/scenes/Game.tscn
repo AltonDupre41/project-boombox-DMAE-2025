@@ -21,6 +21,7 @@ script = ExtResource("7_5ltad")
 use_parent_material = true
 
 [node name="StartRoom" parent="Room" instance=ExtResource("8_nx52g")]
+dialogSignal = -1
 
 [node name="Entities" type="Node2D" parent="."]
 use_parent_material = true
